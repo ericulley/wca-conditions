@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+}
+
+#nav-bar {
+    height: 4em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+#nav-bar-left {
+    width: 15%;
+    text-align: center;
+}
+
+#nav-bar-right {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
