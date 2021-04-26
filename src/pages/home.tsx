@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import AddReport from '../components/AddReport'
 
 const Home: React.FunctionComponent = (props) => {
 
-    const [genReport, setGenReport] = useState({
-        genReport: '',
-    })
+
     const [editReport, setEditReport] = useState({
         editReport: '',
     })
@@ -18,25 +17,10 @@ const Home: React.FunctionComponent = (props) => {
             })
     }
 
-    const handleInputChange = (event: any) => {
-        setGenReport({
-            genReport: event.target.value,
-        })
-    }
-
     const handleEditChange = (event: any) => {
         setEditReport({
             editReport: event.target.value,
         })
-    }
-
-    const submitGenReport = (event: any) => {
-        event.preventDefault()
-        axios.post('http://localhost:3001/reports', genReport)
-            .then((res) => {
-                fetchGenReports()
-            }) 
-        event.target.reset()    
     }
 
     const updateGenReport = (event: any) => {
@@ -63,13 +47,8 @@ const Home: React.FunctionComponent = (props) => {
     return (
         <div>
             <h1>Welcome to Current Conditions</h1>
-            <form id="new-report-form" onSubmit={submitGenReport}>
-                <h3>Add New Fishing Report</h3>
-                <label htmlFor="gen-report-input">Report</label>
-                <input id="gen-report-input" type="text" onChange={handleInputChange}/>
-                <button type="submit">ADD</button>             
-            </form>
-
+            
+            <AddReport fetchGenReports={fetchGenReports} />
             <h1>Reports</h1>
             <div id="gen-reports-cont">
                 {allReports.map((rep: any) => {

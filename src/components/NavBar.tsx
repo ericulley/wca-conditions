@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Nav: React.FunctionComponent = () => {
+const NavBar: React.FunctionComponent = () => {
 
     return (
         <div id="nav-bar">
@@ -16,4 +16,4 @@ const Nav: React.FunctionComponent = () => {
 
 }
 
-export default Nav
+export default NavBar
