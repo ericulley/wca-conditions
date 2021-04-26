@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReport from '../components/AddReport'
+import EditReport from '../components/EditReport'
+
 
 const Home: React.FunctionComponent = (props) => {
 
-
-    const [editReport, setEditReport] = useState({
-        editReport: '',
-    })
     const [allReports, setAllReports] = useState([])
 
     const fetchGenReports = () => {
@@ -15,22 +13,6 @@ const Home: React.FunctionComponent = (props) => {
             .then((res) => {
                 setAllReports(res.data)
             })
-    }
-
-    const handleEditChange = (event: any) => {
-        setEditReport({
-            editReport: event.target.value,
-        })
-    }
-
-    const updateGenReport = (event: any) => {
-        event.preventDefault()
-        console.log(event.target.id)
-        axios.put('http://localhost:3001/reports/' + event.target.id, editReport)
-            .then((res) => {
-                fetchGenReports()
-            }) 
-        event.target.reset()  
     }
 
     const deleteGenReport = (event: any) => {
@@ -49,6 +31,7 @@ const Home: React.FunctionComponent = (props) => {
             <h1>Welcome to Current Conditions</h1>
             
             <AddReport fetchGenReports={fetchGenReports} />
+
             <h1>Reports</h1>
             <div id="gen-reports-cont">
                 {allReports.map((rep: any) => {
@@ -56,14 +39,7 @@ const Home: React.FunctionComponent = (props) => {
                         <div className="gen-report-item" key={rep.post_id}>
                             <p>{rep.report}</p>
                            
-                            <details>
-                                <summary>Edit</summary>
-                                <form id={rep.post_id} onSubmit={updateGenReport}>
-                                    <label htmlFor="report-edit-input">Edit Report</label>
-                                    <input id="report-edit-input" type="text" onChange={handleEditChange}/>
-                                    <button type="submit">Update</button>
-                                </form>
-                            </details>
+                            <EditReport postId={rep.post_id} fetchGenReports={fetchGenReports} />
 
                             <button id={rep.post_id} onClick={deleteGenReport}>
                                 Delete
