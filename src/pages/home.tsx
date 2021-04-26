@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent , useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReport from '../components/AddReport'
 import EditReport from '../components/EditReport'
 
 
-const Home: React.FunctionComponent = (props) => {
+const Home: FunctionComponent = () => {
 
     const [allReports, setAllReports] = useState([])
 
@@ -17,7 +17,7 @@ const Home: React.FunctionComponent = (props) => {
 
     const deleteGenReport = (event: any) => {
         axios.delete('http://localhost:3001/reports/' + event.target.id)
-            .then((res) => {
+            .then(() => {
                 fetchGenReports()
             })
     }
@@ -39,9 +39,9 @@ const Home: React.FunctionComponent = (props) => {
                         <div className="gen-report-item" key={rep.post_id}>
                             <p>{rep.report}</p>
                            
-                            <EditReport postId={rep.post_id} fetchGenReports={fetchGenReports} />
+                            <EditReport postId={rep.id} fetchGenReports={fetchGenReports} />
 
-                            <button id={rep.post_id} onClick={deleteGenReport}>
+                            <button id={rep.id} onClick={deleteGenReport}>
                                 Delete
                             </button>
 

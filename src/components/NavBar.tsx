@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
+import { Link } from 'react-router-dom'
 
-const NavBar: React.FunctionComponent = () => {
+const NavBar: FunctionComponent = () => {
 
     return (
         <div id="nav-bar">

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 
 interface Props {
     fetchGenReports: () => void;
 }
 
-const AddReport: React.FunctionComponent<Props> = ({fetchGenReports}) => {
+const AddReport: FunctionComponent<Props> = ({fetchGenReports}) => {
 
     const [genReport, setGenReport] = useState({
         genReport: '',

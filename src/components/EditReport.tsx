@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
     postId: number;
 }
 
-const EditReport: React.FunctionComponent<Props> = ({fetchGenReports, postId}) => {
+const EditReport: FunctionComponent<Props> = ({fetchGenReports, postId}) => {
 
     const [editReport, setEditReport] = useState({
         editReport: '',
