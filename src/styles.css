@@ -4,6 +4,10 @@ body {
     background-color: #eee;
 }
 
+p {
+    margin: 0;
+}
+
 #nav-bar {
     height: 4em;
     width: 100%;
@@ -15,12 +19,44 @@ body {
 }
 
 #nav-bar-left {
-    width: 15%;
-    text-align: center;
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
 }
 
 #nav-bar-right {
     width: 25%;
     display: flex;
     justify-content: space-around;
+}
+
+.form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.river-row {
+    margin: 2em 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.river-column {
+    width: 23%;
+}
+
+#cfs-column {
+    width: 5%;
+}
+
+.river-report-container {
+    width: 100%;
+}
+
+hr {
+    height: 1px;
+    border: 0px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }

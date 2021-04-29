@@ -6,11 +6,12 @@ const NavBar: FunctionComponent = () => {
     return (
         <div id="nav-bar">
             <div id="nav-bar-left">
-                <p>Current Conditions</p>
+                <Link to={'/'}>Current Conditions</Link>
+                <Link to={'/rivers'}>Rivers</Link>
             </div>
             <div id="nav-bar-right">
-                <p>Settings</p>
-                <p>Log In</p>
+                <Link to={'/settings'}>Settings</Link>
+                <Link to={'/'}>Log In</Link>
             </div>
         </div>
     )

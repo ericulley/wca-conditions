@@ -1,4 +1,4 @@
-import React, { FunctionComponent , useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReport from '../components/AddReport'
 import EditReport from '../components/EditReport'
@@ -16,7 +16,7 @@ const Home: FunctionComponent = () => {
     }
 
     const deleteGenReport = (event: any) => {
-        axios.delete('http://localhost:3001/reports/' + event.target.id)
+        axios.delete('http://localhost:3001/reports/' + event.id)
             .then(() => {
                 fetchGenReports()
             })
@@ -34,14 +34,14 @@ const Home: FunctionComponent = () => {
 
             <h1>Reports</h1>
             <div id="gen-reports-cont">
-                {allReports.map((rep: any) => {
+                {allReports.map((report: any) => {
                     return (
-                        <div className="gen-report-item" key={rep.post_id}>
-                            <p>{rep.report}</p>
+                        <div className="gen-report-item" key={report.id}>
+                            <p>{report.report}</p>
                            
-                            <EditReport postId={rep.id} fetchGenReports={fetchGenReports} />
+                            <EditReport postId={report.id} fetchGenReports={fetchGenReports} />
 
-                            <button id={rep.id} onClick={deleteGenReport}>
+                            <button id={report.id} onClick={deleteGenReport}>
                                 Delete
                             </button>
 
