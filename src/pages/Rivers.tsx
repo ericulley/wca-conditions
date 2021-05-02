@@ -3,15 +3,12 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 // Interfaces
 import River from '../interfaces/River'
+import EditRiver from '../components/EditRiver'
 // Components
-import AddRiver from '../components/AddRiver'
-import { sortAndDeduplicateDiagnostics } from 'typescript'
 
 const Rivers: FunctionComponent = () => {
 
     const [rivers, setRivers] = useState<River[]>([])
-
-    const [cfs, setCFS] = useState()
 
     const fetchAllRivers = () => {
         axios.get('http://localhost:3001/rivers')
@@ -56,23 +53,20 @@ const Rivers: FunctionComponent = () => {
         <div id="rivers-container">
             <h2>Rivers</h2>
             <div className="river-row river-labels">
-                <p className="river-column">River</p>
-                <p className="river-column" id="cfs-column">CFS</p>
-                <p className="river-column">Hatches</p>
-                <p className="river-column">Flies</p>
+                <p className="river-column" id="river-name-column">River</p>
+                <p className="river-column" id="river-cfs-column">CFS</p>
+                <p className="river-column" id="river-report-column">River Report</p>
+                <p className="river-column" id="river-flies-column">Flies</p>
             </div>
             <hr/>
             {rivers.map((river: any) => {
                 return (
                     <div className="river-row-container" key={river.id}>
                         <div className="river-row">
-                            <p className="river-column">{river.river_name}</p>
-                            <p className="river-column"id="cfs-column">{river.cfs}</p>
-                            <p className="river-column">{river.hatches}</p>
-                            <p className="river-column">{river.flies}</p>
-                        </div>
-                        <div className="river-report-container">
-                            <p>River Report: {river.river_report}</p>
+                            <p className="river-column" id="river-name-column">{river.river_name}</p>
+                            <p className="river-column" id="river-cfs-column">{river.cfs}</p>
+                            <p className="river-column" id="river-report-column">{river.river_report}</p>
+                            <p className="river-column" id="river-flies-column">{river.flies}</p>
                         </div>
                     </div>
                 )

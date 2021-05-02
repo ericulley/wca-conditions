@@ -11,8 +11,6 @@ const Lakes: FunctionComponent = () => {
 
     const [lakes, setLakes] = useState<Lake[]>([])
 
-    const [cfs, setCFS] = useState()
-
     const fetchAllLakes = () => {
         axios.get('http://localhost:3001/lakes')
             .then(async (res) => {

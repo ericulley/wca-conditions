@@ -1,4 +1,4 @@
-export default interface River {
+export default interface Lake {
     id?: number;
     lakeName: string;
     stationId: number;

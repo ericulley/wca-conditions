@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 
 interface Props {
@@ -12,7 +12,7 @@ const EditReport: FunctionComponent<Props> = ({fetchGenReports, postId}) => {
         editReport: '',
     })
 
-    const handleEditChange = (event: any) => {
+    const handleChange = (event: any) => {
         setEditReport({
             editReport: event.target.value,
         })
@@ -33,7 +33,7 @@ const EditReport: FunctionComponent<Props> = ({fetchGenReports, postId}) => {
             <summary>Edit</summary>
             <form id={postId + ''} onSubmit={updateGenReport}>
                 <label htmlFor="report-edit-input">Edit Report</label>
-                <input id="report-edit-input" type="text" onChange={handleEditChange}/>
+                <input id="report-edit-input" type="text" onChange={handleChange}/>
                 <button type="submit">Update</button>
             </form>
         </details>

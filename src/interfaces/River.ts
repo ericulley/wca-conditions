@@ -1,7 +1,7 @@
 export default interface River {
     id?: number;
     riverName: string;
-    stationId: number;
+    stationId?: number;
     cfs?: string;
     hatches: string | undefined;
     flies: string | undefined;
