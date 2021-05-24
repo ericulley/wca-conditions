@@ -1,73 +1,78 @@
 // Dependencies
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useState, useEffect } from 'react'
 import axios from 'axios'
+import { Box, Card, CardHeader, Typography, IconButton, CardContent } from '@material-ui/core'
+import { styled, makeStyles } from '@material-ui/core/styles'
+import EditIcon from '@material-ui/icons/Edit';
 // Interfaces
 import River from '../interfaces/River'
 
-interface Props {
-    thisRiver: River;
-    fetchAllRivers: () => void;
-    riverID: number;
-}
+// Components
+import EditRiverForm from './EditRiverForm'
 
-const EditRiver: FunctionComponent<Props> = ({ riverID, thisRiver, fetchAllRivers }) => {
-
-    const [editRiver, setEditRiver] = useState<River>(thisRiver)
-
-    const handleChange = (event: any) => {
-        setEditRiver({
-            ...editRiver,
-            [event.target.name]: event.target.value,
-        })
+const useStyles = makeStyles({
+    editRiverRow: {
+        width: '50%',
     }
+})
 
-    const catchEmptyInputs = () => {
-        let k: keyof typeof editRiver
-        for (k in editRiver) {
-            if (editRiver[k] === '') {
-                setEditRiver({
-                    ...editRiver,
-                    [k]: thisRiver[k],
-                })
-            }
-        }
-    }
+const EditRiver: FunctionComponent = () => {
 
-    const updateRiver = async (event: any) => {
-        event.preventDefault()
-        catchEmptyInputs()
-        axios.put('http://localhost:3001/rivers/' + event.target.id, editRiver)
+    // Import component styles
+    const ui = useStyles()
+
+    // States
+    const [allRivers, setAllRivers] = useState<River[]>([])
+
+    // Methods
+    const fetchAllRivers = () => {
+        axios.get('http://localhost:3001/rivers')
             .then((res) => {
-                console.log(editRiver)
-                fetchAllRivers()
-            })
-        event.target.reset() 
+                // Map response data to River interface
+                let riverArray: River[] = []
+                res.data.forEach((data: any) => {
+                    let river: River = {
+                        id: data.id,
+                        riverName: data.river_name,
+                        stationId: data.station_id,
+                        hatches: data.hatches,
+                        flies: data.flies,
+                        riverReport: data.river_report,
+                        createdAt: data.created_at,
+                        updatedAt: data.updated_at,
+                    }
+                    riverArray.push(river)
+                })
+                setAllRivers(riverArray)
+            })     
     }
 
-    const deleteRiver = (event: any) => {
-        axios.delete('http://localhost:3001/rivers/' + event.target.id)
-        .then(() => {
-            fetchAllRivers()
-        })
-    }
+    useEffect(() => {
+        fetchAllRivers()
+    }, [])
 
     return (
-        <details className="river-edit-container">
-            <summary>Edit</summary>
-            <form className="edit-input-container" id={riverID + ''} onSubmit={updateRiver}>
-                <label htmlFor="edit-river-name">River Name</label>
-                <input id="edit-river-name" name="river_name" type="text" onChange={handleChange}/>
-
-                <label htmlFor="edit-river-report">Report</label>
-                <input id="edit-river-report" name="river_report" type="text" onChange={handleChange}/>
-
-                <label htmlFor="edit-river-flies">Flies</label>
-                <input id="edit-river-flies" name="flies" type="text" onChange={handleChange}/>
-
-                <button type="submit">Update River</button>
-                <button id={riverID + ''} onClick={deleteRiver}>Delete River</button>
-            </form>
-        </details>
+        <Card>
+            <CardHeader
+                title="Edit River"
+                action={
+                    <IconButton>
+                        <EditIcon/>
+                    </IconButton>
+                }
+            />
+            <CardContent id="river-settings-container">
+                {allRivers.map((river: any) => {
+                    return (
+                        <Box key={river.id} display="flex" flexDirection="column">
+                            <Typography className={ui.editRiverRow}>{river.river_name}</Typography>
+                            <EditRiverForm thisRiver={river} riverId={river.id} fetchAllRivers={fetchAllRivers}/>
+                        </Box>
+                    )
+                })}
+            </CardContent>
+        </Card>
+        
     )
 }
 

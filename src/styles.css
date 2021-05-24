@@ -1,11 +1,10 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    background-color: #eee;
 }
 
-p {
-    margin: 0;
+a {
+    text-decoration: none;
 }
 
 #nav-bar {
@@ -28,13 +27,6 @@ p {
     width: 25%;
     display: flex;
     justify-content: space-around;
-}
-
-.form {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    
 }
 
 .river-row {

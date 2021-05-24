@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReport from '../components/AddReport'
 import EditReport from '../components/EditReport'
+import { Container, Typography } from '@material-ui/core'
 
 
 const Home: FunctionComponent = () => {
@@ -23,17 +24,17 @@ const Home: FunctionComponent = () => {
     }
 
     useEffect(() => {
-        fetchGenReports()
+        //fetchGenReports()
     }, [])
 
     return (
-        <div>
-            <h1>Welcome to Current Conditions</h1>
+        <Container>
+            <Typography variant="h2" align="center" color="textPrimary" gutterBottom>Welcome to Current Conditions</Typography>
             
             <AddReport fetchGenReports={fetchGenReports} />
 
             <h1>Reports</h1>
-            <div id="gen-reports-cont">
+            {/*<div id="gen-reports-cont">
                 {allReports.map((report: any) => {
                     return (
                         <div className="gen-report-item" key={report.id}>
@@ -48,9 +49,9 @@ const Home: FunctionComponent = () => {
                         </div>
                     )
                 })}
-            </div>
+            </div>*/}
             
-        </div>
+        </Container>
     )
 }
 
