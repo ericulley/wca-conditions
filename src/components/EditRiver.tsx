@@ -2,7 +2,7 @@
 import { FunctionComponent, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Box, Card, CardHeader, Typography, IconButton, CardContent } from '@material-ui/core'
-import { styled, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit';
 // Interfaces
 import River from '../interfaces/River'

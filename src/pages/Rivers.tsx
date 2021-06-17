@@ -1,18 +1,21 @@
 // Dependencies
 import { FunctionComponent, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
+import { Container, Typography } from '@material-ui/core'
+import { useAuth0 } from '../contexts/auth0-context'
 // Interfaces
 import River from '../interfaces/River'
-import EditRiver from '../components/EditRiver'
 // Components
 
 const Rivers: FunctionComponent = () => {
+
+    const { } = useAuth0()
 
     const [rivers, setRivers] = useState<River[]>([])
 
     const fetchAllRivers = () => {
         axios.get('http://localhost:3001/rivers')
-            .then(async (res) => {
+            .then(async (res: AxiosResponse) => {
                 // Sort Original Data
                 const sortedData = res.data.sort((a: any, b: any) => {
                     return (a.station_id - 0) - (b.station_id - 0)
@@ -39,7 +42,7 @@ const Rivers: FunctionComponent = () => {
 
     const fetchCFS = (stationIds: string) => {
         const CFS: Promise<AxiosResponse<any>[]> = axios.get(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${stationIds}&parameterCd=00060&siteStatus=all`)
-            .then((res) => {
+            .then((res: AxiosResponse) => {
                 return res.data.value.timeSeries
             })
         return CFS    
@@ -50,8 +53,8 @@ const Rivers: FunctionComponent = () => {
     }, [])
 
     return (
-        <div id="rivers-container">
-            <h2>Rivers</h2>
+        <Container id="rivers-container">
+            <Typography variant="h2">Rivers</Typography>
             <div className="river-row river-labels">
                 <p className="river-column" id="river-name-column">River</p>
                 <p className="river-column" id="river-cfs-column">CFS</p>
@@ -71,7 +74,7 @@ const Rivers: FunctionComponent = () => {
                     </div>
                 )
             })}
-        </div>
+        </Container>
     )
 }
 

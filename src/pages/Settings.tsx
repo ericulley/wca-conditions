@@ -1,6 +1,6 @@
 // Dependencies
-import { FunctionComponent, useEffect } from 'react'
-import axios from 'axios'
+import { FunctionComponent } from 'react'
+// import axios from 'axios'
 // Components
 import AddRiver from '../components/AddRiver'
 import EditRiver from '../components/EditRiver'

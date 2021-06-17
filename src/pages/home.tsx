@@ -24,7 +24,7 @@ const Home: FunctionComponent = () => {
     }
 
     useEffect(() => {
-        //fetchGenReports()
+        fetchGenReports()
     }, [])
 
     return (
@@ -34,7 +34,7 @@ const Home: FunctionComponent = () => {
             <AddReport fetchGenReports={fetchGenReports} />
 
             <h1>Reports</h1>
-            {/*<div id="gen-reports-cont">
+            <div id="gen-reports-cont">
                 {allReports.map((report: any) => {
                     return (
                         <div className="gen-report-item" key={report.id}>
@@ -49,7 +49,7 @@ const Home: FunctionComponent = () => {
                         </div>
                     )
                 })}
-            </div>*/}
+            </div>
             
         </Container>
     )

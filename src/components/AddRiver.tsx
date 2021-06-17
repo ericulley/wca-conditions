@@ -1,8 +1,8 @@
 import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 import River from '../interfaces/River'
-import { Button, TextField, Typography, Card, CardHeader, CardContent, IconButton } from '@material-ui/core'
-import { makeStyles, styled } from '@material-ui/core/styles'
+import { Button, TextField, Card, CardHeader, CardContent, IconButton } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import AddIcon from '@material-ui/icons/Add'
 
 const useStyles = makeStyles({

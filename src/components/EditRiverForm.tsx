@@ -1,8 +1,8 @@
 // Dependencies
-import { FunctionComponent, useState, useEffect } from 'react'
+import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 import { Button, Box, Accordion, AccordionSummary, TextField, AccordionDetails } from '@material-ui/core'
-import { makeStyles, styled } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // Interfaces
 import River from '../interfaces/River'
