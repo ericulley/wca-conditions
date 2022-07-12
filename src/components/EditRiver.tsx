@@ -1,7 +1,7 @@
 // Dependencies
 import { FunctionComponent, useState, useEffect } from 'react'
 import axios from 'axios'
-import { Box, Card, CardHeader, Typography, IconButton, CardContent } from '@material-ui/core'
+import { Box, Card, CardHeader, Typography, CardContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit';
 // Interfaces
@@ -55,13 +55,9 @@ const EditRiver: FunctionComponent = () => {
         <Card>
             <CardHeader
                 title="Edit River"
-                action={
-                    <IconButton>
-                        <EditIcon/>
-                    </IconButton>
-                }
+                avatar={<EditIcon/>}
             />
-            <CardContent id="river-settings-container">
+            <CardContent>
                 {allRivers.map((river: any) => {
                     return (
                         <Box key={river.id} display="flex" flexDirection="column">

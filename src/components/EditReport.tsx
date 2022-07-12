@@ -2,11 +2,11 @@ import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 
 interface Props {
-    fetchGenReports: () => void;
+    fetchFishingReport: () => void;
     postId: number;
 }
 
-const EditReport: FunctionComponent<Props> = ({fetchGenReports, postId}) => {
+const EditReport: FunctionComponent<Props> = ({fetchFishingReport, postId}) => {
 
     const [editReport, setEditReport] = useState({
         editReport: '',
@@ -23,7 +23,7 @@ const EditReport: FunctionComponent<Props> = ({fetchGenReports, postId}) => {
         console.log(event.target.id)
         axios.put('http://localhost:3001/reports/' + event.target.id, editReport)
             .then((res) => {
-                fetchGenReports()
+                fetchFishingReport()
             }) 
         event.target.reset()  
     }

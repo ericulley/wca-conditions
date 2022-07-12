@@ -11,10 +11,26 @@ import Home from './pages/Home'
 import Settings from './pages/Settings'
 import { blueGrey, teal } from '@material-ui/core/colors'
 
+// Material UI Styles 
 const theme = createMuiTheme({
   palette: {
     primary: blueGrey, 
     secondary: teal
+  },
+  overrides: {
+    MuiCardContent: {
+      root: {
+        paddingTop: '0'
+      }
+    },
+    MuiCardHeader: {
+      title: {
+        fontSize: '1.2em'
+      },
+      avatar: {
+        marginRight: 8
+      }
+    }
   }
 })
 

@@ -7,28 +7,6 @@ a {
     text-decoration: none;
 }
 
-#Toolbar {
-    height: 4em;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 1em;
-}
-
-#nav-bar-left {
-    width: 25%;
-    display: flex;
-    justify-content: space-around;
-}
-
-#nav-bar-right {
-    width: 25%;
-    display: flex;
-    justify-content: space-around;
-}
-
 .river-row {
     margin: 2em 0 0 0;
     display: flex;

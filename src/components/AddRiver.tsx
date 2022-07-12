@@ -1,16 +1,13 @@
 import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 import River from '../interfaces/River'
-import { Button, TextField, Card, CardHeader, CardContent, IconButton } from '@material-ui/core'
+import { Button, TextField, Card, CardHeader, CardContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AddIcon from '@material-ui/icons/Add'
 
 const useStyles = makeStyles({
     buttonMargin: {
         margin: '1em 0',
-    },
-    'MuiCardHeader-root': {
-        padding: '8px',
     }
 })
 
@@ -62,11 +59,7 @@ const AddRiver: FunctionComponent = () => {
         <Card>
             <CardHeader
                 title="Add New River"
-                action={
-                    <IconButton>
-                        <AddIcon/>
-                    </IconButton>
-                }
+                avatar={<AddIcon/>}
             />
             <CardContent>
                 <form className="form" id="new-river-form" onSubmit={submitRiver}>

@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
-import Lake from '../interfaces/Lake'
+import Lake from '../../interfaces/Lake'
 
 interface Props {
    
