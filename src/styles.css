@@ -1,45 +1,9 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
-    text-decoration: none;
-}
-
-.river-row {
-    margin: 2em 0 0 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* River Columns */
-#river-name-column {
-    width: 15%;
-}
-
-#river-cfs-column {
-    width: 5%;
-}
-
-#river-report-column {
-    width: 50%;
-}
-
-#river-flies-column {
-    width: 20%;
-}
-
-.river-edit-container {
-    width: 100%;
-}
-
-.edit-input-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-hr {
-    background-color: black;
-    height: 1px;
+  text-decoration: none;
 }

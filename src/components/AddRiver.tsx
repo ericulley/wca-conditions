@@ -1,20 +1,11 @@
 import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
 import River from '../interfaces/River'
-import { Button, TextField, Card, CardHeader, CardContent } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import AddIcon from '@material-ui/icons/Add'
+import { Button, TextField, Card, CardHeader, CardContent } from '@mui/material'
 
-const useStyles = makeStyles({
-    buttonMargin: {
-        margin: '1em 0',
-    }
-})
+import AddIcon from '@mui/icons-material/Add'
 
 const AddRiver: FunctionComponent = () => {
-    
-    // Importing component styles
-    const ui = useStyles()
 
     // States
     const [newRiver, setNewRiver] = useState<River>({
@@ -74,7 +65,7 @@ const AddRiver: FunctionComponent = () => {
 
                     <TextField id="river-report-input" label="Report" fullWidth multiline name="riverReport" onChange={handleInputChange}/>
 
-                    <Button className={ui.buttonMargin} variant="contained" fullWidth type="submit">ADD</Button>             
+                    <Button className="" variant="contained" fullWidth type="submit">ADD</Button>             
                 </form>
             </CardContent>
             

@@ -1,27 +1,10 @@
 // Dependencies
 import { FunctionComponent, useState } from 'react'
 import axios from 'axios'
-import { Button, Box, Accordion, AccordionSummary, TextField, AccordionDetails } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { Button, Box, Accordion, AccordionSummary, TextField, AccordionDetails } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 // Interfaces
 import River from '../interfaces/River'
-
-const useStyles = makeStyles({
-    fullWidth: {
-        width: '100%',
-    }, 
-    summary: {
-        fontFamily: 'roboto',
-        fontSize: '1.2em',
-    }, 
-    button: {
-        margin: '1em 0',
-    }, 
-    deleteButton: {
-        margin: '.5em 0',
-    }
-})
 
 interface Props {
     riverId: number,
@@ -30,9 +13,6 @@ interface Props {
 }
 
 const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllRivers }) => {
-
-    // Import component styling
-    const ui = useStyles()
 
     // States
     const [editRiver, setEditRiver] = useState<River>(thisRiver)
@@ -78,12 +58,12 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
     return (
         <Accordion className="river-edit-container">
             <AccordionSummary
-                className={ui.summary}
+                className=""
                 expandIcon={<ExpandMoreIcon/>}>
                 {thisRiver.riverName}
             </AccordionSummary>
             <AccordionDetails>
-                <form className={ui.fullWidth} id={riverId.toString()} onSubmit={updateRiver}>
+                <form className="" id={riverId.toString()} onSubmit={updateRiver}>
                     <Box display="flex" flexDirection="column">
                         <TextField id="edit-river-name" name="river_name" label="River Name" fullWidth onChange={handleChange}/>
 
@@ -91,9 +71,9 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
 
                         <TextField id="edit-river-flies" name="flies" label="Flies" fullWidth onChange={handleChange}/>
 
-                        <Button className={ui.button} variant="contained" type="submit" fullWidth>Update River</Button>
+                        <Button className="" variant="contained" type="submit" fullWidth>Update River</Button>
 
-                        <Button className={ui.deleteButton} variant="contained" color="primary" id={riverId.toString()} fullWidth onClick={deleteRiver}>Delete River</Button>
+                        <Button className="" variant="contained" color="primary" id={riverId.toString()} fullWidth onClick={deleteRiver}>Delete River</Button>
                     </Box>
                 </form>
             </AccordionDetails>

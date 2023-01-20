@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReport from '../components/AddReport'
 import EditReport from '../components/EditReport'
-import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@material-ui/core'
+import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material'
 
 
 const Home: FunctionComponent = () => {
@@ -16,13 +16,13 @@ const Home: FunctionComponent = () => {
             })
     }
 
-    // const deleteGenReport = (event: any) => {
-    //     console.log(event.target.id)
-    //     axios.delete('http://localhost:3001/reports/' + event.target.id)
-    //         .then(() => {
-    //             fetchFishingReport()
-    //         })
-    // }
+    const deleteGenReport = (event: any) => {
+        console.log(event.target.id)
+        axios.delete('http://localhost:3001/reports/' + event.target.id)
+            .then(() => {
+                fetchFishingReport()
+            })
+    }
 
     useEffect(() => {
         fetchFishingReport()

@@ -1,23 +1,14 @@
 import React, { FunctionComponent, useState } from 'react'
 import axios from 'axios'
-import { Card, CardHeader, CardContent, TextField, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import AddIcon from '@material-ui/icons/Add'
+import { Card, CardHeader, CardContent, TextField, Button } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 
-// interface Props {
-//     fetchGenReports: () => void;
-// }
+interface Props {
+    fetchGenReports: () => void;
+}
 
-const useStyles = makeStyles({
-    buttonMargin: {
-        margin: '1em 0',
-    }
-})
 
 const AddReport: FunctionComponent = () => {
-
-     // Importing component styles
-    const ui = useStyles()
 
     const [genReport, setGenReport] = useState({
         genReport: '',
@@ -54,7 +45,7 @@ const AddReport: FunctionComponent = () => {
                         multiline
                         rows={4}
                         onChange={handleInputChange}/>
-                    <Button className={ui.buttonMargin} variant="contained" fullWidth type="submit"><AddIcon />ADD</Button>   
+                    <Button className="" variant="contained" fullWidth type="submit"><AddIcon />ADD</Button>   
                 </form>
             </CardContent>
            

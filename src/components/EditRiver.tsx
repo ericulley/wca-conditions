@@ -1,25 +1,15 @@
 // Dependencies
 import { FunctionComponent, useState, useEffect } from 'react'
 import axios from 'axios'
-import { Box, Card, CardHeader, Typography, CardContent } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import EditIcon from '@material-ui/icons/Edit';
+import { Box, Card, CardHeader, Typography, CardContent } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit';
 // Interfaces
 import River from '../interfaces/River'
 
 // Components
 import EditRiverForm from './EditRiverForm'
 
-const useStyles = makeStyles({
-    editRiverRow: {
-        width: '50%',
-    }
-})
-
 const EditRiver: FunctionComponent = () => {
-
-    // Import component styles
-    const ui = useStyles()
 
     // States
     const [allRivers, setAllRivers] = useState<River[]>([])
@@ -61,7 +51,7 @@ const EditRiver: FunctionComponent = () => {
                 {allRivers.map((river: any) => {
                     return (
                         <Box key={river.id} display="flex" flexDirection="column">
-                            <Typography className={ui.editRiverRow}>{river.river_name}</Typography>
+                            <Typography className="">{river.river_name}</Typography>
                             <EditRiverForm thisRiver={river} riverId={river.id} fetchAllRivers={fetchAllRivers}/>
                         </Box>
                     )

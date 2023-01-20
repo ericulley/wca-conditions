@@ -1,8 +1,8 @@
 // Dependencies
 import { FunctionComponent, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { Container, Typography } from '@material-ui/core'
-import { useAuth0 } from '../contexts/auth0-context'
+import { Container, Typography } from '@mui/material'
+import { useAuth0 } from '@auth0/auth0-react'
 // Interfaces
 import River from '../interfaces/River'
 // Components
