@@ -1,56 +1,94 @@
-import React, { FunctionComponent, useState } from 'react'
-import axios from 'axios'
-import { Card, CardHeader, CardContent, TextField, Button } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
+import {
+    FunctionComponent as FC,
+    useState,
+    ChangeEvent,
+    ChangeEventHandler,
+    FormEvent,
+    FormEventHandler,
+} from 'react';
+import axios from 'axios';
+import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { after } from 'node:test';
+import { TGeneralReport } from '../types/TGenReport';
+import dateFormat from 'dateformat';
 
-interface Props {
-    fetchGenReports: () => void;
-}
+// interface Props {
+//     fetchGenReports: () => void;
+// }
 
+const AddReport: FC = () => {
+    const [genReport, setGenReport] = useState<TGeneralReport>({
+        report: null,
+        date: null,
+        createdAt: null,
+        updatedAt: null,
+    });
 
-const AddReport: FunctionComponent = () => {
+    const handleInputChange: ChangeEventHandler = (event: ChangeEvent) => {
+        let target = event.target as HTMLInputElement;
+        if (target.name === 'gen-report')
+            setGenReport({
+                ...genReport,
+                report: target.value,
+            });
+        if (target.name === 'gen-report-date')
+            setGenReport({
+                ...genReport,
+                date: target.value,
+            });
+    };
 
-    const [genReport, setGenReport] = useState({
-        genReport: '',
-    })
-
-    const handleInputChange = (event: any) => {
-        setGenReport({
-            genReport: event.target.value,
-        })
-    }
-
-    const submitGenReport = (event: any) => {
-        event.preventDefault()
-        axios.post('http://localhost:3001/reports', genReport)
-            .then((res) => {
-                // fetchGenReports()
-            }) 
-        event.target.reset()    
-    }
+    const submitGenReport: FormEventHandler = async (event: FormEvent) => {
+        let target = event.target as HTMLFormElement;
+        event.preventDefault();
+        try {
+            const report = genReport;
+            report.createdAt = Date.now();
+            report.date = report.date ? report.date : dateFormat(Date.now(), 'isoDate');
+            console.log('Report State Pre-Post: ', report);
+            await axios({
+                method: 'post',
+                url: 'http://localhost:5050/general/reports',
+                data: report,
+            });
+            target.reset();
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
 
     return (
         <Card>
-            <CardHeader
-                title="Add New Report"
-                avatar={<AddIcon />}
-            />
+            <CardHeader title="Add New Report" avatar={<AddIcon />} />
             <CardContent>
                 <form id="new-report-form" autoComplete="off" onSubmit={submitGenReport}>
-                    <TextField 
-                        id="gen-report-input" 
+                    <TextField
+                        id="gen-report-input"
                         variant="outlined"
                         label="Report"
                         fullWidth
                         multiline
                         rows={4}
-                        onChange={handleInputChange}/>
-                    <Button className="" variant="contained" fullWidth type="submit"><AddIcon />ADD</Button>   
+                        name="gen-report"
+                        onChange={handleInputChange}
+                    />
+                    <Input
+                        id="gen-report-date-input"
+                        type="date"
+                        required
+                        name="gen-report-date"
+                        value={dateFormat(new Date(), 'isoDate')}
+                        onChange={handleInputChange}
+                    />
+                    <Button className="" variant="contained" fullWidth type="submit">
+                        <AddIcon />
+                        ADD
+                    </Button>
                 </form>
             </CardContent>
-           
         </Card>
-    )
-}
+    );
+};
 
-export default AddReport
+export default AddReport;
