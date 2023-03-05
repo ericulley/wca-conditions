@@ -1,5 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
+import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
     fetchFishingReport: () => void;
@@ -27,14 +29,27 @@ const EditReport: FunctionComponent<Props> = ({ fetchFishingReport, postId }) =>
     };
 
     return (
-        <details>
-            <summary>Edit</summary>
-            <form id={postId + ''} onSubmit={updateGenReport}>
-                <label htmlFor="report-edit-input">Edit Report</label>
-                <input id="report-edit-input" type="text" onChange={handleChange} />
-                <button type="submit">Update</button>
-            </form>
-        </details>
+        <Card>
+            <CardHeader title="Edit Current Report" avatar={<AddIcon />} />
+            <CardContent>
+                <form id={postId + ''} onSubmit={updateGenReport}>
+                    <TextField
+                        id="edit-gen-report-input"
+                        variant="outlined"
+                        label="Current Report"
+                        fullWidth
+                        multiline
+                        rows={4}
+                        name="edit-gen-report"
+                        onChange={handleChange}
+                    />
+                    <Button className="" variant="contained" fullWidth type="submit">
+                        <AddIcon />
+                        Update
+                    </Button>
+                </form>
+            </CardContent>
+        </Card>
     );
 };
 
