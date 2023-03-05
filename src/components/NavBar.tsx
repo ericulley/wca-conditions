@@ -1,32 +1,29 @@
-import { FunctionComponent, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import axios, { AxiosResponse } from 'axios'
-import { useAuth0 } from '@auth0/auth0-react'
-import { AppBar, Toolbar, Box, Button } from '@mui/material'
-import SettingsIcon from '@mui/icons-material/Settings'
+import { FunctionComponent, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
+import { AppBar, Toolbar, Box, Button } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const NavBar: FunctionComponent = () => {
-
-    const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0()
+    const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
     useEffect(() => {
         if (user) {
-            console.log("User: ", user)
+            console.log('User: ', user);
         }
-    }, [user])
+    }, [user]);
 
     return (
         <AppBar position="sticky">
             <Toolbar>
-                <Box 
-                    style={{width: '100%'}} 
-                    display="flex" 
-                    justifyContent="space-between">
-                    <Box 
-                        display="flex" justifyContent="space-around" 
+                <Box style={{ width: '100%' }} display="flex" justifyContent="space-between">
+                    <Box
+                        display="flex"
+                        justifyContent="space-around"
                         alignItems="center"
-                        style={{width: '33%'}}>
-
+                        style={{ width: '33%' }}
+                    >
                         {/* Home Link  */}
                         <NavLink to={'/'}>
                             <Button color="secondary">Current Conditions</Button>
@@ -42,34 +39,53 @@ const NavBar: FunctionComponent = () => {
                             <Button color="secondary">Lakes</Button>
                         </NavLink>
                     </Box>
-                    <Box 
+                    <Box
                         display="flex"
                         justifyContent="space-around"
                         alignItems="center"
-                        style={{width: '15%'}}>
-
+                        style={{ width: '15%' }}
+                    >
                         {/* Settings Link  */}
-                        {isAuthenticated && user!['https://roles'].includes("Admin") && <NavLink to={'/settings'}>
-                            <SettingsIcon color="action" style={{padding: '20% 0 0 0'}}/>
-                        </NavLink>}
+                        {isAuthenticated && user!['https://roles'].includes('Admin') && (
+                            <NavLink to={'/settings'}>
+                                <SettingsIcon color="action" style={{ padding: '20% 0 0 0' }} />
+                            </NavLink>
+                        )}
 
                         {/* Log In Link  */}
-                        {!user && !isLoading && <NavLink to={'/'}>
-                            <Button variant="outlined" color="secondary" onClick={() => {loginWithRedirect()}}>Log In</Button>
-                        </NavLink>}
-                        
+                        {!user && !isLoading && (
+                            <NavLink to={'/'}>
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={() => {
+                                        loginWithRedirect();
+                                    }}
+                                >
+                                    Log In
+                                </Button>
+                            </NavLink>
+                        )}
 
                         {/* Log Out Link  */}
-                        {user && isAuthenticated && !isLoading && <NavLink to={'/'}>
-                            <Button variant="outlined" color="secondary" onClick={() => {logout()}}>Log Out</Button>
-                        </NavLink>}
-                        
+                        {user && isAuthenticated && !isLoading && (
+                            <NavLink to={'/'}>
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={() => {
+                                        logout();
+                                    }}
+                                >
+                                    Log Out
+                                </Button>
+                            </NavLink>
+                        )}
                     </Box>
                 </Box>
             </Toolbar>
         </AppBar>
-    )
+    );
+};
 
-}
-
-export default NavBar
+export default NavBar;

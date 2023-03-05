@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import axios from 'axios';
-import AddReport from '../components/AddReport';
+import AddReport from '../components/reports/AddReport';
 import EditReport from '../components/EditReport';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 

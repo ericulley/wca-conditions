@@ -2,9 +2,10 @@
 import { FunctionComponent as FC } from 'react';
 // import axios from 'axios'
 // Components
-import AddReport from '../components/AddReport';
-import AddRiver from '../components/AddRiver';
-import EditRiver from '../components/EditRiver';
+import AddReport from '../components/reports/AddReport';
+import EditReport from '../components/reports/EditReport';
+import AddRiver from '../components/rivers/AddRiver';
+import EditRiver from '../components/rivers/EditRiver';
 import { Container, Typography, Grid } from '@mui/material';
 
 const Settings: FC = () => {
@@ -19,6 +20,8 @@ const Settings: FC = () => {
             <Grid container spacing={3}>
                 <Grid item sm={12} color="primary">
                     <AddReport />
+                    {/* Update Props */}
+                    <EditReport fetchFishingReport={() => {}} postId={123} />
                 </Grid>
             </Grid>
 

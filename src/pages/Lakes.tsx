@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 // Interfaces
 import Lake from '../types/Lake';
 // Components
-import AddRiver from '../components/AddRiver';
+import AddRiver from '../components/rivers/AddRiver';
 import { sortAndDeduplicateDiagnostics } from 'typescript';
 
 const Lakes: FunctionComponent = () => {

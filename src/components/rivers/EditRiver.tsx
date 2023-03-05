@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Box, Card, CardHeader, Typography, CardContent } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 // Interfaces
-import River from '../types/River';
+import River from '../../types/River';
 
 // Components
 import EditRiverForm from './EditRiverForm';

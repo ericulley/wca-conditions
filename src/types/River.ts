@@ -7,5 +7,5 @@ export default interface River {
     flies: string | undefined;
     riverReport: string | undefined;
     createdAt?: string | undefined;
-    updatedAt?: string | undefined; 
+    updatedAt?: string | undefined;
 }

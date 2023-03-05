@@ -7,5 +7,5 @@ export default interface Lake {
     flies: string | undefined;
     lakeReport: string | undefined;
     createdAt?: string | undefined;
-    updatedAt?: string | undefined; 
+    updatedAt?: string | undefined;
 }
