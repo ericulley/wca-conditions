@@ -29,11 +29,11 @@ const Settings: FC = () => {
                 River Settings
             </Typography>
             <Grid container spacing={3}>
-                <Grid item sm={6}>
-                    <EditRiver />
-                </Grid>
                 <Grid item sm={6} color="primary">
                     <AddRiver />
+                </Grid>
+                <Grid item sm={6}>
+                    <EditRiver />
                 </Grid>
             </Grid>
         </Container>

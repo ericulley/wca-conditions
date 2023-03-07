@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import axios from 'axios';
 import AddReport from '../components/reports/AddReport';
-import EditReport from '../components/EditReport';
+import EditReport from '../components/reports/EditReport';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 
 const Home: FunctionComponent = () => {
