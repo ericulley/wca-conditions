@@ -2,7 +2,7 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 // Interfaces
-import Lake from '../types/Lake';
+import Lake from '../types/TLake';
 // Components
 import AddRiver from '../components/rivers/AddRiver';
 import { sortAndDeduplicateDiagnostics } from 'typescript';

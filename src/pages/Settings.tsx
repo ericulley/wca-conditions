@@ -26,7 +26,7 @@ const Settings: FC = () => {
             </Grid>
 
             <Typography className="" variant="h5">
-                River Settings
+                Rivers
             </Typography>
             <Grid container spacing={3}>
                 <Grid item sm={6} color="primary">
@@ -36,6 +36,9 @@ const Settings: FC = () => {
                     <EditRiver />
                 </Grid>
             </Grid>
+            <Typography className="" variant="h5">
+                Lakes
+            </Typography>
         </Container>
     );
 };

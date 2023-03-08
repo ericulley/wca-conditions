@@ -1,27 +1,19 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import axios from 'axios';
 import AddReport from '../components/reports/AddReport';
 import EditReport from '../components/reports/EditReport';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
+import { ConditionsContext } from '../contexts/ConditionsContext';
 
 const Home: FunctionComponent = () => {
-    const [report, setReport] = useState([]);
+    const { generalReport } = useContext(ConditionsContext);
 
-    const fetchFishingReport = async () => {
-        const generalReport = await axios.get('http://localhost:5050/general/reports');
-        await setReport(generalReport.data);
-    };
-
-    const deleteGenReport = (event: any) => {
-        console.log(event.target.id);
-        axios.delete('http://localhost:5050/general/reports/' + event.target.id).then(() => {
-            fetchFishingReport();
-        });
-    };
-
-    useEffect(() => {
-        fetchFishingReport();
-    }, []);
+    // const deleteGenReport = (event: any) => {
+    //     console.log(event.target.id);
+    //     axios.delete('http://localhost:5050/general/reports/' + event.target.id).then(() => {
+    //         getGenReport();
+    //     });
+    // };
 
     return (
         <Container>
@@ -34,13 +26,11 @@ const Home: FunctionComponent = () => {
                         <CardHeader title="Fishing Report" />
                         <CardContent>
                             <div>
-                                {report.map((report: any, i: number) => {
-                                    return (
-                                        <div key={i}>
-                                            <p key={report.id}>{report.report}</p>
-                                        </div>
-                                    );
-                                })}
+                                {generalReport ? (
+                                    <p>{generalReport.report}</p>
+                                ) : (
+                                    <p>No report available</p>
+                                )}
                             </div>
                         </CardContent>
                     </Card>

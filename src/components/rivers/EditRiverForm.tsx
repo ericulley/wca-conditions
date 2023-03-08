@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Interfaces
-import River from '../../types/River';
+import River from '../../types/TRiver';
 
 interface Props {
     riverId: number;

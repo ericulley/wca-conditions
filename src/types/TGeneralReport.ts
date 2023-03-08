@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const ZGeneralReport = z.object({
+export const ZGeneralReport = z.object({
     _id: z.number().optional(),
     report: z.string().nullable(),
     date: z.string().nullable(),

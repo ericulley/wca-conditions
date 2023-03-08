@@ -1,5 +1,5 @@
 // Dependencies
-import { FunctionComponent as FC, useState } from 'react';
+import { FunctionComponent as FC, useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
@@ -10,6 +10,10 @@ import NavBar from './components/NavBar';
 import Rivers from './pages/Rivers';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
+import { ConditionsContext } from './contexts/ConditionsContext';
+import { TGeneralReport } from './types/TGeneralReport';
+import { TRiver } from './types/TRiver';
+import { ZConditions } from './types/TConditions';
 
 // Material UI Styles
 const theme = createTheme({
@@ -39,9 +43,13 @@ const theme = createTheme({
 });
 
 const App: FC<{}> = (props) => {
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-
+    // States
+    const [generalReport, setGeneralReport] = useState<TGeneralReport | null>(null);
+    const [rivers, setRivers] = useState<TRiver>();
     const [userData, setUserData] = useState();
+
+    // Auth
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
     const fetchUserData = () => {
         if (user && user.sub) {
@@ -67,16 +75,30 @@ const App: FC<{}> = (props) => {
         }
     };
 
+    const getGenReport = async () => {
+        const { data } = await axios.get('http://localhost:5050/general/reports');
+        console.log(data);
+        await setGeneralReport(data[0]);
+    };
+
+    useEffect(() => {
+        getGenReport();
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             <div className="App">
                 <Router>
-                    <NavBar />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/rivers" element={<Rivers />} />
-                        <Route path="/settings" element={<Settings />} />
-                    </Routes>
+                    <ConditionsContext.Provider
+                        value={{ generalReport: generalReport, river: null, lake: null }}
+                    >
+                        <NavBar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/rivers" element={<Rivers />} />
+                            <Route path="/settings" element={<Settings />} />
+                        </Routes>
+                    </ConditionsContext.Provider>
                 </Router>
             </div>
         </ThemeProvider>

@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Container, Typography } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
 // Interfaces
-import River from '../types/River';
+import River from '../types/TRiver';
 // Components
 
 const Rivers: FunctionComponent = () => {

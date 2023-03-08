@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { after } from 'node:test';
-import { TGeneralReport } from '../../types/TGenReport';
+import { TGeneralReport } from '../../types/TGeneralReport';
 import dateFormat from 'dateformat';
 
 // interface Props {

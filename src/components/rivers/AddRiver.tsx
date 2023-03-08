@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
-import River from '../../types/River';
+import River from '../../types/TRiver';
 import { Button, TextField, Card, CardHeader, CardContent } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
