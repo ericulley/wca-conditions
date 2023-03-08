@@ -13,7 +13,6 @@ import Settings from './pages/Settings';
 import { ConditionsContext } from './contexts/ConditionsContext';
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
-import { ZConditions } from './types/TConditions';
 
 // Material UI Styles
 const theme = createTheme({
@@ -44,7 +43,7 @@ const theme = createTheme({
 
 const App: FC<{}> = (props) => {
     // States
-    const [generalReport, setGeneralReport] = useState<TGeneralReport | null>(null);
+    const [generalReport, setGeneralReport] = useState<TGeneralReport>();
     const [rivers, setRivers] = useState<TRiver>();
     const [userData, setUserData] = useState();
 
@@ -90,7 +89,7 @@ const App: FC<{}> = (props) => {
             <div className="App">
                 <Router>
                     <ConditionsContext.Provider
-                        value={{ generalReport: generalReport, river: null, lake: null }}
+                        value={{ generalReport: generalReport, setGeneralReport: setGeneralReport }}
                     >
                         <NavBar />
                         <Routes>

@@ -1,8 +1,11 @@
 import { createContext } from 'react';
-import { TConditions } from '../types/TConditions';
+import { TConditionsContext } from '../types/TConditions';
 
-export const ConditionsContext = createContext<TConditions>({
-    generalReport: null,
-    river: null,
-    lake: null,
+export const ConditionsContext = createContext<TConditionsContext>({
+    generalReport: undefined,
+    setGeneralReport: undefined,
+    river: undefined,
+    setRiver: undefined,
+    lake: undefined,
+    setLake: undefined,
 });

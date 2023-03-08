@@ -1,12 +1,13 @@
 import { z } from 'zod';
-import { ZGeneralReport } from './TGeneralReport';
-import { ZLake } from './TLake';
-import { ZRiver } from './TRiver';
+import { TGeneralReport, ZGeneralReport } from './TGeneralReport';
+import { TLake, ZLake } from './TLake';
+import { TRiver, ZRiver } from './TRiver';
 
-export const ZConditions = z.object({
-    generalReport: ZGeneralReport.nullable(),
-    river: ZRiver.nullable(),
-    lake: ZLake.nullable(),
-});
-
-export type TConditions = z.infer<typeof ZConditions>;
+export type TConditionsContext = {
+    generalReport?: TGeneralReport;
+    setGeneralReport?: React.Dispatch<React.SetStateAction<TGeneralReport | undefined>>;
+    river?: TRiver | null;
+    setRiver?: React.Dispatch<React.SetStateAction<TRiver | undefined>> | undefined;
+    lake?: TLake | null;
+    setLake?: React.Dispatch<React.SetStateAction<TLake | undefined>> | undefined;
+};
