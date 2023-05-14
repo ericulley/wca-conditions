@@ -46,11 +46,12 @@ const NavBar: FunctionComponent = () => {
                         style={{ width: '15%' }}
                     >
                         {/* Settings Link  */}
-                        {isAuthenticated && user!['https://roles'].includes('Admin') && (
-                            <NavLink to={'/settings'}>
-                                <SettingsIcon color="action" style={{ padding: '20% 0 0 0' }} />
-                            </NavLink>
-                        )}
+                        {isAuthenticated &&
+                            user!['http://current-conditions.com/roles'].includes('Admin') && (
+                                <NavLink to={'/settings'}>
+                                    <SettingsIcon color="action" style={{ padding: '20% 0 0 0' }} />
+                                </NavLink>
+                            )}
 
                         {/* Log In Link  */}
                         {!user && !isLoading && (

@@ -11,7 +11,7 @@ import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/ma
 import AddIcon from '@mui/icons-material/Add';
 import { after } from 'node:test';
 import { TGeneralReport } from '../../types/TGeneralReport';
-import dateFormat from 'dateformat';
+import dateformat from 'dateformat';
 
 // interface Props {
 //     fetchGenReports: () => void;
@@ -22,7 +22,7 @@ const AddReport: FC = () => {
         report: null,
         date: null,
         createdAt: null,
-        updatedAt: null,
+        updatedAt: undefined,
     });
 
     const handleInputChange: ChangeEventHandler = (event: ChangeEvent) => {
@@ -45,7 +45,7 @@ const AddReport: FC = () => {
         try {
             const report = genReport;
             report.createdAt = Date.now();
-            report.date = report.date ? report.date : dateFormat(Date.now(), 'isoDate');
+            report.date = report.date ? report.date : dateformat(Date.now(), 'isoDate');
             console.log('Report State Pre-Post: ', report);
             await axios({
                 method: 'post',
@@ -78,7 +78,7 @@ const AddReport: FC = () => {
                         type="date"
                         required
                         name="gen-report-date"
-                        value={dateFormat(new Date(), 'isoDate')}
+                        value={dateformat(new Date(), 'isoDate')}
                         onChange={handleInputChange}
                     />
                     <Button className="" variant="contained" fullWidth type="submit">

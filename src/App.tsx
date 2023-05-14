@@ -13,6 +13,7 @@ import Settings from './pages/Settings';
 import { ConditionsContext } from './contexts/ConditionsContext';
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
+import { TLake } from './types/TLake';
 
 // Material UI Styles
 const theme = createTheme({
@@ -75,9 +76,9 @@ const App: FC<{}> = (props) => {
     };
 
     const getGenReport = async () => {
-        const { data } = await axios.get('http://localhost:5050/general/reports');
+        const { data } = await axios.get('http://localhost:5050/general/reports/latest');
         console.log(data);
-        await setGeneralReport(data[0]);
+        await setGeneralReport(data);
     };
 
     useEffect(() => {
@@ -87,18 +88,18 @@ const App: FC<{}> = (props) => {
     return (
         <ThemeProvider theme={theme}>
             <div className="App">
-                <Router>
-                    <ConditionsContext.Provider
-                        value={{ generalReport: generalReport, setGeneralReport: setGeneralReport }}
-                    >
-                        <NavBar />
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/rivers" element={<Rivers />} />
-                            <Route path="/settings" element={<Settings />} />
-                        </Routes>
-                    </ConditionsContext.Provider>
-                </Router>
+                {/* <Router> */}
+                <ConditionsContext.Provider
+                    value={{ generalReport: generalReport, setGeneralReport: setGeneralReport }}
+                >
+                    <NavBar />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/rivers" element={<Rivers />} />
+                        <Route path="/settings" element={<Settings />} />
+                    </Routes>
+                </ConditionsContext.Provider>
+                {/* </Router> */}
             </div>
         </ThemeProvider>
     );
