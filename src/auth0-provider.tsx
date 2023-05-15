@@ -16,8 +16,6 @@ export const Auth0ProviderWithHistory = ({
     let navigate = useNavigate();
 
     const onRedirectCallback = (appState?: AppState) => {
-        console.log('RRD: returnTo: ', appState?.returnTo);
-        console.log('RRD: pathname: ', window.location.pathname);
         navigate(appState?.returnTo || window.location.pathname);
     };
 

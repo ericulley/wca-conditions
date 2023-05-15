@@ -1,37 +1,28 @@
 import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
-import River from '../../types/TRiver';
-import { Button, TextField, Card, CardHeader, CardContent } from '@mui/material';
-
+import { TRiver } from '../../types/TRiver';
+import { Button, TextField, Card, CardHeader, CardContent, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import dateformat from 'dateformat';
 
 const AddRiver: FunctionComponent = () => {
-    // States
-    const [newRiver, setNewRiver] = useState<River>({
-        riverName: '',
-        stationId: 0,
-        hatches: '',
-        flies: '',
-        riverReport: '',
+    /*
+     * States
+     */
+    const [newRiver, setNewRiver] = useState<TRiver>({
+        name: null,
+        date: null,
+        stationId: null,
+        hatches: null,
+        report: null,
+        createdAt: null,
+        updatedAt: undefined,
     });
 
-    const [reqError, setReqError] = useState({
-        riverName: false,
-        stationId: false,
-    });
-
-    // Methods
-    const handleInputChange = (event: any) => {
-        if (event.target.name === 'riverName')
-            setReqError({
-                ...reqError,
-                riverName: true,
-            });
-        if (event.target.name === 'stationId')
-            setReqError({
-                ...reqError,
-                stationId: true,
-            });
+    /*
+     * Methods
+     */
+    const handleInputChange = async (event: any) => {
         setNewRiver({
             ...newRiver,
             [event.target.name]: event.target.value,
@@ -40,10 +31,16 @@ const AddRiver: FunctionComponent = () => {
 
     const submitRiver = (event: any) => {
         event.preventDefault();
-        axios.post('http://localhost:3001/rivers', newRiver).then((res) => {});
+        console.log('New River Submission: ', newRiver);
+        axios.post('http://localhost:5050/rivers', newRiver).then((res) => {
+            console.log('RESP: ', res.data);
+        });
         event.target.reset();
     };
 
+    /*
+     * Render Component
+     */
     return (
         <Card>
             <CardHeader title="Add New River" avatar={<AddIcon />} />
@@ -53,9 +50,8 @@ const AddRiver: FunctionComponent = () => {
                         id="river-name-input"
                         label="Name / Location"
                         required
-                        error={reqError.riverName && !newRiver.riverName}
                         fullWidth
-                        name="riverName"
+                        name="name"
                         onChange={handleInputChange}
                     />
 
@@ -63,7 +59,6 @@ const AddRiver: FunctionComponent = () => {
                         id="station-id-input"
                         label="Station ID"
                         required
-                        error={reqError.stationId && !newRiver.stationId}
                         fullWidth
                         name="stationId"
                         onChange={handleInputChange}
@@ -78,19 +73,20 @@ const AddRiver: FunctionComponent = () => {
                     />
 
                     <TextField
-                        id="flies-input"
-                        label="Flies"
-                        name="flies"
-                        fullWidth
-                        onChange={handleInputChange}
-                    />
-
-                    <TextField
                         id="river-report-input"
                         label="Report"
                         fullWidth
                         multiline
-                        name="riverReport"
+                        name="report"
+                        onChange={handleInputChange}
+                    />
+
+                    <Input
+                        id="gen-report-date-input"
+                        type="date"
+                        required
+                        name="date"
+                        defaultValue={dateformat(new Date(), 'isoDate')}
                         onChange={handleInputChange}
                     />
 

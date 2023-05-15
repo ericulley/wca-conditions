@@ -9,20 +9,13 @@ import {
 import axios from 'axios';
 import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { after } from 'node:test';
 import { TGeneralReport } from '../../types/TGeneralReport';
 import dateformat from 'dateformat';
-
-// interface Props {
-//     fetchGenReports: () => void;
-// }
 
 const AddReport: FC = () => {
     const [genReport, setGenReport] = useState<TGeneralReport>({
         report: null,
         date: null,
-        createdAt: null,
-        updatedAt: undefined,
     });
 
     const handleInputChange: ChangeEventHandler = (event: ChangeEvent) => {
@@ -44,7 +37,6 @@ const AddReport: FC = () => {
         event.preventDefault();
         try {
             const report = genReport;
-            report.createdAt = Date.now();
             report.date = report.date ? report.date : dateformat(Date.now(), 'isoDate');
             console.log('Report State Pre-Post: ', report);
             await axios({
@@ -78,7 +70,7 @@ const AddReport: FC = () => {
                         type="date"
                         required
                         name="gen-report-date"
-                        value={dateformat(new Date(), 'isoDate')}
+                        defaultValue={dateformat(new Date(), 'isoDate')}
                         onChange={handleInputChange}
                     />
                     <Button className="" variant="contained" fullWidth type="submit">

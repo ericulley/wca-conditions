@@ -14,6 +14,8 @@ import { ConditionsContext } from './contexts/ConditionsContext';
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
 import { TLake } from './types/TLake';
+// Config
+import { config } from './config/config';
 
 // Material UI Styles
 const theme = createTheme({
@@ -51,34 +53,10 @@ const App: FC<{}> = (props) => {
     // Auth
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-    const fetchUserData = () => {
-        if (user && user.sub) {
-            getAccessTokenSilently()
-                .then((token: any) => {
-                    axios
-                        .get(`http://localhost:3001/userdata/${user.sub}`, {
-                            headers: {
-                                authorization: `Bearer ${token}`,
-                            },
-                        })
-                        .then((res: AxiosResponse) => {
-                            console.log(res.data);
-                            setUserData(res.data);
-                        })
-                        .catch((err: any) => {
-                            console.error(err.message);
-                        });
-                })
-                .catch((err: any) => {
-                    console.error(err.message);
-                });
-        }
-    };
-
     const getGenReport = async () => {
-        const { data } = await axios.get('http://localhost:5050/general/reports/latest');
+        const { data } = await axios.get(`http://localhost:5050/general/reports/latest`);
         console.log(data);
-        await setGeneralReport(data);
+        setGeneralReport(data);
     };
 
     useEffect(() => {

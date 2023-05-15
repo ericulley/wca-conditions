@@ -11,17 +11,16 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Interfaces
-import River from '../../types/TRiver';
+import { TRiver } from '../../types/TRiver';
 
 interface Props {
-    riverId: number;
-    thisRiver: River;
+    riverToEdit: TRiver;
     fetchAllRivers: () => void;
 }
 
-const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllRivers }) => {
+const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }) => {
     // States
-    const [editRiver, setEditRiver] = useState<River>(thisRiver);
+    const [editRiver, setEditRiver] = useState<TRiver>(riverToEdit);
 
     // Methods
     const handleChange = (event: any) => {
@@ -31,22 +30,22 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
         });
     };
 
-    const catchEmptyInputs = () => {
-        let k: keyof typeof editRiver;
-        for (k in editRiver) {
-            if (editRiver[k] === '') {
-                setEditRiver({
-                    ...editRiver,
-                    [k]: thisRiver[k],
-                });
-            }
-        }
-    };
+    // const catchEmptyInputs = () => {
+    //     let k: keyof typeof editRiver;
+    //     for (k in editRiver) {
+    //         if (editRiver[k] === '') {
+    //             setEditRiver({
+    //                 ...editRiver,
+    //                 [k]: riverToEdit[k],
+    //             });
+    //         }
+    //     }
+    // };
 
     const updateRiver = async (event: any) => {
         event.preventDefault();
-        catchEmptyInputs();
-        axios.put('http://localhost:3001/rivers/' + event.target.id, editRiver).then((res) => {
+        // catchEmptyInputs();
+        axios.put('http://localhost:5050/rivers/' + event.target.id, editRiver).then((res) => {
             // console.log(editRiver)
             fetchAllRivers();
         });
@@ -54,7 +53,7 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
     };
 
     const deleteRiver = (event: any) => {
-        axios.delete('http://localhost:3001/rivers/' + event.target.id).then(() => {
+        axios.delete('http://localhost:5050/rivers/' + event.target.id).then(() => {
             fetchAllRivers();
         });
     };
@@ -62,31 +61,34 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
     return (
         <Accordion className="river-edit-container">
             <AccordionSummary className="" expandIcon={<ExpandMoreIcon />}>
-                {thisRiver.riverName}
+                {riverToEdit.name}
             </AccordionSummary>
             <AccordionDetails>
-                <form className="" id={riverId.toString()} onSubmit={updateRiver}>
+                <form className="" id={riverToEdit._id!.toString()} onSubmit={updateRiver}>
                     <Box display="flex" flexDirection="column">
                         <TextField
                             id="edit-river-name"
-                            name="river_name"
+                            name="name"
                             label="River Name"
+                            defaultValue={riverToEdit.name}
                             fullWidth
                             onChange={handleChange}
                         />
 
                         <TextField
                             id="edit-river-report"
-                            name="river_report"
+                            name="report"
                             label="Report"
+                            defaultValue={riverToEdit.report}
                             fullWidth
                             onChange={handleChange}
                         />
 
                         <TextField
-                            id="edit-river-flies"
-                            name="flies"
-                            label="Flies"
+                            id="edit-river-hatches"
+                            name="hatches"
+                            label="Hatches"
+                            defaultValue={riverToEdit.hatches}
                             fullWidth
                             onChange={handleChange}
                         />
@@ -99,7 +101,7 @@ const EditRiverForm: FunctionComponent<Props> = ({ thisRiver, riverId, fetchAllR
                             className=""
                             variant="contained"
                             color="primary"
-                            id={riverId.toString()}
+                            id={riverToEdit._id!.toString()}
                             fullWidth
                             onClick={deleteRiver}
                         >

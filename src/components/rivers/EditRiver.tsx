@@ -3,31 +3,31 @@ import { FunctionComponent, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Card, CardHeader, Typography, CardContent } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+
 // Interfaces
-import River from '../../types/TRiver';
+import { TRiver } from '../../types/TRiver';
 
 // Components
 import EditRiverForm from './EditRiverForm';
 
 const EditRiver: FunctionComponent = () => {
     // States
-    const [allRivers, setAllRivers] = useState<River[]>([]);
+    const [allRivers, setAllRivers] = useState<TRiver[]>([]);
 
     // Methods
     const fetchAllRivers = () => {
-        axios.get('http://localhost:3001/rivers').then((res) => {
+        axios.get(`http://localhost:5050/rivers`).then((res) => {
             // Map response data to River interface
-            let riverArray: River[] = [];
+            let riverArray: TRiver[] = [];
             res.data.forEach((data: any) => {
-                let river: River = {
-                    id: data.id,
-                    riverName: data.river_name,
-                    stationId: data.station_id,
+                let river: TRiver = {
+                    _id: data._id,
+                    name: data.name,
+                    stationId: data.stationId,
                     hatches: data.hatches,
-                    flies: data.flies,
-                    riverReport: data.river_report,
-                    createdAt: data.created_at,
-                    updatedAt: data.updated_at,
+                    report: data.report,
+                    createdAt: data.createdAt,
+                    updatedAt: data.updatedAt,
                 };
                 riverArray.push(river);
             });
@@ -43,15 +43,10 @@ const EditRiver: FunctionComponent = () => {
         <Card>
             <CardHeader title="Edit River" avatar={<EditIcon />} />
             <CardContent>
-                {allRivers.map((river: any) => {
+                {allRivers.map((river: TRiver) => {
                     return (
-                        <Box key={river.id} display="flex" flexDirection="column">
-                            <Typography className="">{river.river_name}</Typography>
-                            <EditRiverForm
-                                thisRiver={river}
-                                riverId={river.id}
-                                fetchAllRivers={fetchAllRivers}
-                            />
+                        <Box key={river._id} display="flex" flexDirection="column">
+                            <EditRiverForm riverToEdit={river} fetchAllRivers={fetchAllRivers} />
                         </Box>
                     );
                 })}

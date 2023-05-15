@@ -6,6 +6,7 @@ import { TRiver, ZRiver } from './TRiver';
 export type TConditionsContext = {
     generalReport?: TGeneralReport;
     setGeneralReport?: React.Dispatch<React.SetStateAction<TGeneralReport | undefined>>;
+    fetchAllRivers?: () => {};
     river?: TRiver | null;
     setRiver?: React.Dispatch<React.SetStateAction<TRiver | undefined>> | undefined;
     lake?: TLake | null;
