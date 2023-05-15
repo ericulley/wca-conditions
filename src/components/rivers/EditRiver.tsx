@@ -23,6 +23,7 @@ const EditRiver: FunctionComponent = () => {
                 let river: TRiver = {
                     _id: data._id,
                     name: data.name,
+                    date: data.date,
                     stationId: data.stationId,
                     hatches: data.hatches,
                     report: data.report,

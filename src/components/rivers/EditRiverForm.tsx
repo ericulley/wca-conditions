@@ -8,6 +8,7 @@ import {
     AccordionSummary,
     TextField,
     AccordionDetails,
+    Input,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Interfaces
@@ -28,6 +29,7 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
             ...editRiver,
             [event.target.name]: event.target.value,
         });
+        console.log('Edit River Status: ', editRiver);
     };
 
     // const catchEmptyInputs = () => {
@@ -45,11 +47,12 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
     const updateRiver = async (event: any) => {
         event.preventDefault();
         // catchEmptyInputs();
+        console.log('PUT River DATA: ', editRiver);
         axios.put('http://localhost:5050/rivers/' + event.target.id, editRiver).then((res) => {
-            // console.log(editRiver)
+            console.log('Update River Response: ', res.data);
             fetchAllRivers();
         });
-        event.target.reset();
+        // event.target.reset();
     };
 
     const deleteRiver = (event: any) => {
@@ -74,7 +77,6 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                             fullWidth
                             onChange={handleChange}
                         />
-
                         <TextField
                             id="edit-river-report"
                             name="report"
@@ -83,7 +85,6 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                             fullWidth
                             onChange={handleChange}
                         />
-
                         <TextField
                             id="edit-river-hatches"
                             name="hatches"
@@ -92,11 +93,17 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                             fullWidth
                             onChange={handleChange}
                         />
-
+                        <Input
+                            id="edit-river-date-input"
+                            type="date"
+                            required
+                            name="date"
+                            defaultValue={riverToEdit.date}
+                            onChange={handleChange}
+                        />
                         <Button className="" variant="contained" type="submit" fullWidth>
                             Update River
                         </Button>
-
                         <Button
                             className=""
                             variant="contained"

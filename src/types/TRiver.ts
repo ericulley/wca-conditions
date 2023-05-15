@@ -7,7 +7,7 @@ export const ZRiver = z.object({
     report: z.string().nullable(),
     cfs: z.string().optional().nullable(),
     hatches: z.string().optional().nullable(),
-    date: z.date().nullable().optional(),
+    date: z.string().datetime().nullable().optional(),
     createdAt: z.number().nullable(),
     updatedAt: z.number().optional().nullable(),
 });

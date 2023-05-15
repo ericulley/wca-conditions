@@ -11,7 +11,7 @@ const AddRiver: FunctionComponent = () => {
      */
     const [newRiver, setNewRiver] = useState<TRiver>({
         name: null,
-        date: null,
+        date: dateformat(new Date(), 'isoDate'),
         stationId: null,
         hatches: null,
         report: null,
@@ -33,7 +33,7 @@ const AddRiver: FunctionComponent = () => {
         event.preventDefault();
         console.log('New River Submission: ', newRiver);
         axios.post('http://localhost:5050/rivers', newRiver).then((res) => {
-            console.log('RESP: ', res.data);
+            // error handling
         });
         event.target.reset();
     };
