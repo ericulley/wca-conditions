@@ -55,7 +55,6 @@ const App: FC<{}> = (props) => {
 
     const getGenReport = async () => {
         const { data } = await axios.get(`http://localhost:5050/general/reports/latest`);
-        console.log(data);
         setGeneralReport(data);
     };
 

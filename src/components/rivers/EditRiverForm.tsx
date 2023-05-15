@@ -29,30 +29,13 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
             ...editRiver,
             [event.target.name]: event.target.value,
         });
-        console.log('Edit River Status: ', editRiver);
     };
-
-    // const catchEmptyInputs = () => {
-    //     let k: keyof typeof editRiver;
-    //     for (k in editRiver) {
-    //         if (editRiver[k] === '') {
-    //             setEditRiver({
-    //                 ...editRiver,
-    //                 [k]: riverToEdit[k],
-    //             });
-    //         }
-    //     }
-    // };
 
     const updateRiver = async (event: any) => {
         event.preventDefault();
-        // catchEmptyInputs();
-        console.log('PUT River DATA: ', editRiver);
         axios.put('http://localhost:5050/rivers/' + event.target.id, editRiver).then((res) => {
-            console.log('Update River Response: ', res.data);
             fetchAllRivers();
         });
-        // event.target.reset();
     };
 
     const deleteRiver = (event: any) => {
