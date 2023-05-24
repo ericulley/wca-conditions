@@ -1,6 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios, { AxiosResponse } from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AppBar, Toolbar, Box, Button } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';

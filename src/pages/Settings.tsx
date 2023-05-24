@@ -17,10 +17,12 @@ const Settings: FC = () => {
             <Typography className="" variant="h5">
                 Fishing Report
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container>
                 <Grid item sm={12} color="primary">
                     <AddReport />
                     {/* Update Props */}
+                </Grid>
+                <Grid item sm={12} color="primary">
                     <EditReport fetchFishingReport={() => {}} postId={123} />
                 </Grid>
             </Grid>
@@ -28,7 +30,7 @@ const Settings: FC = () => {
             <Typography className="" variant="h5">
                 Rivers
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container>
                 <Grid item sm={6} color="primary">
                     <AddRiver />
                 </Grid>

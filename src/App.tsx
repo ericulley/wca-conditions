@@ -2,11 +2,9 @@
 import { FunctionComponent as FC, useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { Route, Routes } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
-import { blueGrey, grey } from '@mui/material/colors';
 // Components
-import NavBar from './components/NavBar';
+import NavBar from './components/navigation/NavBar';
 import Rivers from './pages/Rivers';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -14,35 +12,10 @@ import { AppContext } from './contexts/ConditionsContext';
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
 import { TLake } from './types/TLake';
-// Config
+// Config & Styles
 import { config } from './config/config';
-
-// Material UI Styles
-const theme = createTheme({
-    palette: {
-        primary: blueGrey,
-        secondary: grey,
-    },
-    components: {
-        MuiCardContent: {
-            styleOverrides: {
-                root: {
-                    // paddingTop: '0',
-                },
-            },
-        },
-        MuiCardHeader: {
-            styleOverrides: {
-                title: {
-                    fontSize: '1.2em',
-                },
-                avatar: {
-                    marginRight: 8,
-                },
-            },
-        },
-    },
-});
+import { ThemeProvider } from '@mui/material';
+import { theme } from './styles';
 
 const App: FC<{}> = (props) => {
     // States
@@ -69,23 +42,24 @@ const App: FC<{}> = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <div className="App">
-                <AppContext.Provider
-                    value={{
-                        generalReport: generalReport,
-                        setGeneralReport: setGeneralReport,
-                        rivers: rivers,
-                        setRivers: setRivers,
-                    }}
-                >
+            <AppContext.Provider
+                value={{
+                    generalReport: generalReport,
+                    setGeneralReport: setGeneralReport,
+                    rivers: rivers,
+                    setRivers: setRivers,
+                }}
+            >
+                <div className="App">
+                    {/* Components */}
                     <NavBar />
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/rivers" element={<Rivers />} />
                         <Route path="/settings" element={<Settings />} />
                     </Routes>
-                </AppContext.Provider>
-            </div>
+                </div>
+            </AppContext.Provider>
         </ThemeProvider>
     );
 };

@@ -1,7 +1,4 @@
 import { FunctionComponent, useContext } from 'react';
-import axios from 'axios';
-import AddReport from '../components/reports/AddReport';
-import EditReport from '../components/reports/EditReport';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 import { AppContext } from '../contexts/ConditionsContext';
 
@@ -13,7 +10,7 @@ const Home: FunctionComponent = () => {
             <Typography variant="h2" align="center" color="textPrimary">
                 Welcome to Current Conditions
             </Typography>
-            <Grid container>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Card>
                         <CardHeader title="Fishing Report" />
