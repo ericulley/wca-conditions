@@ -3,17 +3,10 @@ import axios from 'axios';
 import AddReport from '../components/reports/AddReport';
 import EditReport from '../components/reports/EditReport';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
-import { ConditionsContext } from '../contexts/ConditionsContext';
+import { AppContext } from '../contexts/ConditionsContext';
 
 const Home: FunctionComponent = () => {
-    const { generalReport } = useContext(ConditionsContext);
-
-    // const deleteGenReport = (event: any) => {
-    //     console.log(event.target.id);
-    //     axios.delete('http://localhost:5050/general/reports/' + event.target.id).then(() => {
-    //         getGenReport();
-    //     });
-    // };
+    const { generalReport, rivers } = useContext(AppContext);
 
     return (
         <Container>
@@ -35,18 +28,27 @@ const Home: FunctionComponent = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card>
                         <CardHeader title="Rivers" />
-                        <CardContent></CardContent>
+                        <CardContent>
+                            {rivers &&
+                                rivers.map((river) => {
+                                    return (
+                                        <div key={river._id}>
+                                            {river.name}, {river.report}, {river.hatches}
+                                        </div>
+                                    );
+                                })}
+                        </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                {/* <Grid item xs={12} md={6}>
                     <Card>
                         <CardHeader title="Lakes" />
                         <CardContent></CardContent>
                     </Card>
-                </Grid>
+                </Grid> */}
             </Grid>
         </Container>
     );

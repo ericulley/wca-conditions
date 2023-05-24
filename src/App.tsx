@@ -1,7 +1,7 @@
 // Dependencies
 import { FunctionComponent as FC, useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
 import { blueGrey, grey } from '@mui/material/colors';
@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 import Rivers from './pages/Rivers';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
-import { ConditionsContext } from './contexts/ConditionsContext';
+import { AppContext } from './contexts/ConditionsContext';
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
 import { TLake } from './types/TLake';
@@ -27,7 +27,7 @@ const theme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    paddingTop: '0',
+                    // paddingTop: '0',
                 },
             },
         },
@@ -47,8 +47,7 @@ const theme = createTheme({
 const App: FC<{}> = (props) => {
     // States
     const [generalReport, setGeneralReport] = useState<TGeneralReport>();
-    const [rivers, setRivers] = useState<TRiver>();
-    const [userData, setUserData] = useState();
+    const [rivers, setRivers] = useState<TRiver[]>([]);
 
     // Auth
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -58,16 +57,26 @@ const App: FC<{}> = (props) => {
         setGeneralReport(data);
     };
 
+    const getRivers = async () => {
+        const { data } = await axios.get('http://localhost:5050/rivers');
+        setRivers(data);
+    };
+
     useEffect(() => {
         getGenReport();
+        getRivers();
     }, []);
 
     return (
         <ThemeProvider theme={theme}>
             <div className="App">
-                {/* <Router> */}
-                <ConditionsContext.Provider
-                    value={{ generalReport: generalReport, setGeneralReport: setGeneralReport }}
+                <AppContext.Provider
+                    value={{
+                        generalReport: generalReport,
+                        setGeneralReport: setGeneralReport,
+                        rivers: rivers,
+                        setRivers: setRivers,
+                    }}
                 >
                     <NavBar />
                     <Routes>
@@ -75,8 +84,7 @@ const App: FC<{}> = (props) => {
                         <Route path="/rivers" element={<Rivers />} />
                         <Route path="/settings" element={<Settings />} />
                     </Routes>
-                </ConditionsContext.Provider>
-                {/* </Router> */}
+                </AppContext.Provider>
             </div>
         </ThemeProvider>
     );

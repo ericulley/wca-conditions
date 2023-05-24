@@ -4,16 +4,16 @@ import axios, { AxiosResponse } from 'axios';
 import { Container, Typography } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
 // Interfaces
-import River from '../types/TRiver';
+import { TRiver } from '../types/TRiver';
 // Components
 
 const Rivers: FunctionComponent = () => {
     const {} = useAuth0();
 
-    const [rivers, setRivers] = useState<River[]>([]);
+    const [rivers, setRivers] = useState<TRiver[]>([]);
 
     const fetchAllRivers = () => {
-        axios.get('http://localhost:3001/rivers').then(async (res: AxiosResponse) => {
+        axios.get('http://localhost:5050/rivers').then(async (res: AxiosResponse) => {
             // Sort Original Data
             const sortedData = res.data.sort((a: any, b: any) => {
                 return a.station_id - 0 - (b.station_id - 0);

@@ -61,18 +61,18 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                             onChange={handleChange}
                         />
                         <TextField
-                            id="edit-river-report"
-                            name="report"
-                            label="Report"
-                            defaultValue={riverToEdit.report}
-                            fullWidth
-                            onChange={handleChange}
-                        />
-                        <TextField
                             id="edit-river-hatches"
                             name="hatches"
                             label="Hatches"
                             defaultValue={riverToEdit.hatches}
+                            fullWidth
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            id="edit-river-report"
+                            name="report"
+                            label="Report"
+                            defaultValue={riverToEdit.report}
                             fullWidth
                             onChange={handleChange}
                         />

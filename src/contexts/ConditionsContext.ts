@@ -1,12 +1,12 @@
 import { createContext } from 'react';
-import { TConditionsContext } from '../types/TConditions';
+import { TAppContext } from '../types/TConditions';
 
-export const ConditionsContext = createContext<TConditionsContext>({
+export const AppContext = createContext<TAppContext>({
     generalReport: undefined,
     setGeneralReport: undefined,
     fetchAllRivers: undefined,
-    river: undefined,
-    setRiver: undefined,
+    rivers: undefined,
+    setRivers: undefined,
     lake: undefined,
     setLake: undefined,
 });
