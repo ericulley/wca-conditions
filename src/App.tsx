@@ -25,18 +25,46 @@ const App: FC<{}> = (props) => {
     // Auth
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-    const getGenReport = async () => {
+    // App Functions
+    const getGeneralReport = async (): Promise<void> => {
         const { data } = await axios.get(`http://localhost:5050/general/reports/latest`);
         setGeneralReport(data);
     };
 
-    const getRivers = async () => {
+    const getRivers = async (): Promise<void> => {
         const { data } = await axios.get('http://localhost:5050/rivers');
-        setRivers(data);
+        addCFS(data);
+    };
+
+    const fetchUSGSData = async (riversP: TRiver[]) => {
+        let stationIdString: string = '';
+        riversP.forEach((river) => {
+            stationIdString = stationIdString + river.stationId + ',';
+        });
+        const stationIdSubstring: string = stationIdString.substring(0, stationIdString.length - 1);
+        const baseURL = 'https://waterservices.usgs.gov/nwis/iv/';
+        const staticParams = '&format=json&parameterCd=00060&siteStatus=all';
+        const rawUSGSData: AxiosResponse = await axios.get(
+            `${baseURL}?sites=${stationIdSubstring}${staticParams}`
+        );
+        return rawUSGSData.data.value.timeSeries as [];
+    };
+
+    const addCFS = async (riversP: TRiver[]): Promise<void> => {
+        const timeSeriesData = await fetchUSGSData(riversP);
+
+        timeSeriesData.forEach((data: any) => {
+            const siteCode = data.sourceInfo.siteCode[0].value;
+            const CFS = data.values[0].value[0].value;
+            riversP.forEach((river) => {
+                if (river.stationId === siteCode) river.cfs = CFS;
+            });
+        });
+        setRivers(riversP);
     };
 
     useEffect(() => {
-        getGenReport();
+        getGeneralReport();
         getRivers();
     }, []);
 
@@ -45,8 +73,10 @@ const App: FC<{}> = (props) => {
             <AppContext.Provider
                 value={{
                     generalReport: generalReport,
+                    getGeneralReport: getGeneralReport,
                     setGeneralReport: setGeneralReport,
                     rivers: rivers,
+                    getRivers: getRivers,
                     setRivers: setRivers,
                 }}
             >

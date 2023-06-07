@@ -1,16 +1,15 @@
 // Dependencies
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useContext, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { Container, Typography } from '@mui/material';
-import { useAuth0 } from '@auth0/auth0-react';
 // Interfaces
 import { TRiver } from '../types/TRiver';
+import { AppContext } from '../contexts/ConditionsContext';
+import { time } from 'console';
 // Components
 
 const Rivers: FunctionComponent = () => {
-    const {} = useAuth0();
-
-    const [rivers, setRivers] = useState<TRiver[]>([]);
+    const { rivers, setRivers } = useContext(AppContext);
 
     const fetchAllRivers = () => {
         axios.get('http://localhost:5050/rivers').then(async (res: AxiosResponse) => {
@@ -25,7 +24,8 @@ const Rivers: FunctionComponent = () => {
                 sortedData[i].cfs = sortedCFS[i].values[0].value[0].value;
             }
             // Set the State
-            setRivers(sortedData);
+            // setRivers(sortedData);
+            console.log('Sorted Data: ', sortedData);
         });
     };
 
@@ -49,9 +49,7 @@ const Rivers: FunctionComponent = () => {
         return CFS;
     };
 
-    useEffect(() => {
-        fetchAllRivers();
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <Container id="rivers-container">
@@ -71,26 +69,27 @@ const Rivers: FunctionComponent = () => {
                 </p>
             </div>
             <hr />
-            {rivers.map((river: any) => {
-                return (
-                    <div className="river-row-container" key={river.id}>
-                        <div className="river-row">
-                            <p className="river-column" id="river-name-column">
-                                {river.river_name}
-                            </p>
-                            <p className="river-column" id="river-cfs-column">
-                                {river.cfs}
-                            </p>
-                            <p className="river-column" id="river-report-column">
-                                {river.river_report}
-                            </p>
-                            <p className="river-column" id="river-flies-column">
-                                {river.flies}
-                            </p>
+            {rivers &&
+                rivers.map((river: any) => {
+                    return (
+                        <div className="river-row-container" key={river._id}>
+                            <div className="river-row">
+                                <p className="river-column" id="river-name-column">
+                                    {river.river_name}
+                                </p>
+                                <p className="river-column" id="river-cfs-column">
+                                    {river.cfs}
+                                </p>
+                                <p className="river-column" id="river-report-column">
+                                    {river.river_report}
+                                </p>
+                                <p className="river-column" id="river-flies-column">
+                                    {river.flies}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
         </Container>
     );
 };

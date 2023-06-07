@@ -32,9 +32,20 @@ const Home: FunctionComponent = () => {
                             {rivers &&
                                 rivers.map((river) => {
                                     return (
-                                        <div key={river._id}>
-                                            {river.name}, {river.report}, {river.hatches}
-                                        </div>
+                                        <Grid container key={river._id}>
+                                            <Grid item xs={2}>
+                                                {river.name}
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                                {river.cfs}
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                {river.report}
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                                {river.hatches}
+                                            </Grid>
+                                        </Grid>
                                     );
                                 })}
                         </CardContent>
