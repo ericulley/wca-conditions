@@ -22,12 +22,21 @@ export const defaultStyles = {
                 sx: { marginTop: 1 },
             },
         },
-        MuiCardContent: {},
+        MuiCardContent: {
+            defaultProps: {
+                sx: { marginTop: 0, paddingTop: 0 },
+            },
+        },
         MuiCardHeader: {
             styleOverrides: {
                 title: {
                     fontSize: '1.2em',
                 },
+            },
+        },
+        MuiGridContainer: {
+            defaultProps: {
+                sx: { borderRadius: 2, p: 2, minWidth: 300 },
             },
         },
     },

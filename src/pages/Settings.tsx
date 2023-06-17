@@ -1,5 +1,5 @@
 // Dependencies
-import { FunctionComponent as FC } from 'react';
+import { FunctionComponent as FC, useContext } from 'react';
 // import axios from 'axios'
 // Components
 import AddReport from '../components/reports/AddReport';
@@ -7,10 +7,9 @@ import EditReport from '../components/reports/EditReport';
 import AddRiver from '../components/rivers/AddRiver';
 import EditRiver from '../components/rivers/EditRiver';
 import { Container, Typography, Grid } from '@mui/material';
+import { AppContext } from '../contexts/ConditionsContext';
 
 const Settings: FC = () => {
-    // const styles = useStyles()
-
     return (
         <Container>
             <Typography variant="h2">Settings</Typography>

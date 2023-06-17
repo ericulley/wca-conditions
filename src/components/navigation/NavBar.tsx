@@ -1,11 +1,14 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AppBar, Toolbar, Box, Button } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { AppContext } from '../../contexts/ConditionsContext';
+import TPage from '../../types/TPage';
 
 const NavBar: FunctionComponent = () => {
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
+    const { page, setPage } = useContext(AppContext);
 
     useEffect(() => {
         if (user) {
@@ -25,17 +28,38 @@ const NavBar: FunctionComponent = () => {
                     >
                         {/* Home Link  */}
                         <NavLink to={'/'}>
-                            <Button color="secondary">Current Conditions</Button>
+                            <Button
+                                color="secondary"
+                                onClick={() => {
+                                    if (setPage) setPage(TPage.Home);
+                                }}
+                            >
+                                Current Conditions
+                            </Button>
                         </NavLink>
 
                         {/* Rivers Link  */}
                         <NavLink to={'/rivers'}>
-                            <Button color="secondary">Rivers</Button>
+                            <Button
+                                color="secondary"
+                                onClick={() => {
+                                    if (setPage) setPage(TPage.Rivers);
+                                }}
+                            >
+                                Rivers
+                            </Button>
                         </NavLink>
 
                         {/* Lakes Link  */}
                         <NavLink to={'/lakes'}>
-                            <Button color="secondary">Lakes</Button>
+                            <Button
+                                color="secondary"
+                                onClick={() => {
+                                    if (setPage) setPage(TPage.Lakes);
+                                }}
+                            >
+                                Lakes
+                            </Button>
                         </NavLink>
                     </Box>
                     <Box
@@ -48,7 +72,13 @@ const NavBar: FunctionComponent = () => {
                         {isAuthenticated &&
                             user!['http://current-conditions.com/roles'].includes('Admin') && (
                                 <NavLink to={'/settings'}>
-                                    <SettingsIcon color="action" style={{ padding: '20% 0 0 0' }} />
+                                    <SettingsIcon
+                                        color="action"
+                                        style={{ padding: '20% 0 0 0' }}
+                                        onClick={() => {
+                                            if (setPage) setPage(TPage.Settings);
+                                        }}
+                                    />
                                 </NavLink>
                             )}
 

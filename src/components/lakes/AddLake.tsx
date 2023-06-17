@@ -1,16 +1,15 @@
 import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
-import Lake from '../../types/TLake';
+import { TLake } from '../../types/TLake';
 
 interface Props {}
 
 const AddLake: FunctionComponent<Props> = () => {
-    const [newLake, setNewLake] = useState<Lake>({
-        lakeName: '',
-        stationId: 0,
+    const [newLake, setNewLake] = useState<TLake>({
+        name: '',
         hatches: '',
         flies: '',
-        lakeReport: '',
+        report: '',
     });
 
     const handleInputChange = (event: any) => {

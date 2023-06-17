@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 // Components
 import NavBar from './components/navigation/NavBar';
 import Rivers from './pages/Rivers';
+import Lakes from './pages/Lakes';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import { AppContext } from './contexts/ConditionsContext';
@@ -16,11 +17,13 @@ import { TLake } from './types/TLake';
 import { config } from './config/config';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './styles';
+import TPage from './types/TPage';
 
 const App: FC<{}> = (props) => {
     // States
     const [generalReport, setGeneralReport] = useState<TGeneralReport>();
     const [rivers, setRivers] = useState<TRiver[]>([]);
+    const [page, setPage] = useState<TPage>(TPage.Home);
 
     // Auth
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -52,7 +55,6 @@ const App: FC<{}> = (props) => {
 
     const addCFS = async (riversP: TRiver[]): Promise<void> => {
         const timeSeriesData = await fetchUSGSData(riversP);
-
         timeSeriesData.forEach((data: any) => {
             const siteCode = data.sourceInfo.siteCode[0].value;
             const CFS = data.values[0].value[0].value;
@@ -68,6 +70,10 @@ const App: FC<{}> = (props) => {
         getRivers();
     }, []);
 
+    useEffect(() => {
+        getRivers();
+    }, [page]);
+
     return (
         <ThemeProvider theme={theme}>
             <AppContext.Provider
@@ -78,6 +84,8 @@ const App: FC<{}> = (props) => {
                     rivers: rivers,
                     getRivers: getRivers,
                     setRivers: setRivers,
+                    page: page,
+                    setPage: setPage,
                 }}
             >
                 <div className="App">
@@ -86,6 +94,7 @@ const App: FC<{}> = (props) => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/rivers" element={<Rivers />} />
+                        <Route path="/lakes" element={<Lakes />} />
                         <Route path="/settings" element={<Settings />} />
                     </Routes>
                 </div>

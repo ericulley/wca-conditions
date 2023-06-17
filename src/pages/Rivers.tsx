@@ -1,7 +1,7 @@
 // Dependencies
-import { FunctionComponent, useContext, useEffect } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 // Interfaces
 import { TRiver } from '../types/TRiver';
 import { AppContext } from '../contexts/ConditionsContext';
@@ -11,85 +11,68 @@ import { time } from 'console';
 const Rivers: FunctionComponent = () => {
     const { rivers, setRivers } = useContext(AppContext);
 
-    const fetchAllRivers = () => {
-        axios.get('http://localhost:5050/rivers').then(async (res: AxiosResponse) => {
-            // Sort Original Data
-            const sortedData = res.data.sort((a: any, b: any) => {
-                return a.station_id - 0 - (b.station_id - 0);
-            });
-            // Fetch CFS with Sorted Data
-            const sortedCFS: any[] = await fetchCFS(formatStationIDs(sortedData));
-            // Assign CFS value to Sorted Data
-            for (let i = 0; i < sortedData.length; i++) {
-                sortedData[i].cfs = sortedCFS[i].values[0].value[0].value;
-            }
-            // Set the State
-            // setRivers(sortedData);
-            console.log('Sorted Data: ', sortedData);
-        });
-    };
-
-    const formatStationIDs = (data: AxiosResponse<any>[]) => {
-        const stationIDArray: string[] = [];
-        data.forEach((river: any) => {
-            stationIDArray.push(river.station_id + ',');
-        });
-        const stationIDString = stationIDArray.join('').slice(0, -1);
-        return stationIDString;
-    };
-
-    const fetchCFS = (stationIds: string) => {
-        const CFS: Promise<AxiosResponse<any>[]> = axios
-            .get(
-                `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${stationIds}&parameterCd=00060&siteStatus=all`
-            )
-            .then((res: AxiosResponse) => {
-                return res.data.value.timeSeries;
-            });
-        return CFS;
-    };
-
-    useEffect(() => {}, []);
-
     return (
-        <Container id="rivers-container">
-            <Typography variant="h2">Rivers</Typography>
-            <div className="river-row river-labels">
-                <p className="river-column" id="river-name-column">
-                    River
-                </p>
-                <p className="river-column" id="river-cfs-column">
-                    CFS
-                </p>
-                <p className="river-column" id="river-report-column">
-                    River Report
-                </p>
-                <p className="river-column" id="river-flies-column">
-                    Flies
-                </p>
-            </div>
-            <hr />
-            {rivers &&
-                rivers.map((river: any) => {
-                    return (
-                        <div className="river-row-container" key={river._id}>
-                            <div className="river-row">
-                                <p className="river-column" id="river-name-column">
-                                    {river.river_name}
-                                </p>
-                                <p className="river-column" id="river-cfs-column">
-                                    {river.cfs}
-                                </p>
-                                <p className="river-column" id="river-report-column">
-                                    {river.river_report}
-                                </p>
-                                <p className="river-column" id="river-flies-column">
-                                    {river.flies}
-                                </p>
-                            </div>
-                        </div>
-                    );
-                })}
+        <Container id="rivers-container" maxWidth="xl">
+            <Card>
+                <CardHeader title="Rivers" />
+                <CardContent>
+                    <Grid
+                        container
+                        sx={{
+                            borderRadius: 2,
+                            p: 2,
+                            minWidth: 300,
+                            fontWeight: 'bold',
+                            textDecoration: 'underline',
+                        }}
+                    >
+                        <Grid item sm={2}>
+                            Name @ Location
+                        </Grid>
+                        <Grid item sm={1}>
+                            CFS
+                        </Grid>
+                        <Grid item sm={7}>
+                            Report
+                        </Grid>
+                        <Grid item sm={2}>
+                            Hatches
+                        </Grid>
+                    </Grid>
+                    {rivers ? (
+                        rivers.map((river) => {
+                            return (
+                                <Grid
+                                    container
+                                    key={river._id}
+                                    sx={{
+                                        bgcolor: 'background.paper',
+                                        boxShadow: 1,
+                                        borderRadius: 2,
+                                        p: 2,
+                                        minWidth: 300,
+                                    }}
+                                >
+                                    <Grid item xs={2}>
+                                        {river.name}
+                                    </Grid>
+                                    <Grid item xs={1}>
+                                        {river.cfs}
+                                    </Grid>
+                                    <Grid item xs={7}>
+                                        {river.report}
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        {river.hatches}
+                                    </Grid>
+                                </Grid>
+                            );
+                        })
+                    ) : (
+                        <p>No river available</p>
+                    )}
+                </CardContent>
+            </Card>
         </Container>
     );
 };

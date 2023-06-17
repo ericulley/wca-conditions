@@ -5,14 +5,18 @@ import {
     ChangeEventHandler,
     FormEvent,
     FormEventHandler,
+    useContext,
 } from 'react';
 import axios from 'axios';
 import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { TGeneralReport } from '../../types/TGeneralReport';
 import dateformat from 'dateformat';
+import { AppContext } from '../../contexts/ConditionsContext';
 
 const AddReport: FC = () => {
+    const { getGeneralReport } = useContext(AppContext);
+
     const [genReport, setGenReport] = useState<TGeneralReport>({
         report: null,
         date: null,
@@ -39,12 +43,13 @@ const AddReport: FC = () => {
             const report = genReport;
             report.date = report.date ? report.date : dateformat(Date.now(), 'isoDate');
             console.log('Report State Pre-Post: ', report);
-            await axios({
+            const res = await axios({
                 method: 'post',
                 url: 'http://localhost:5050/general/reports',
                 data: report,
             });
             target.reset();
+            if (getGeneralReport) getGeneralReport();
         } catch (error: any) {
             console.log(error.message);
         }

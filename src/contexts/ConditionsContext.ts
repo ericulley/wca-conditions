@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import { TAppContext } from '../types/TAppContext';
+import TPage from '../types/TPage';
 
 export const AppContext = createContext<TAppContext>({
     generalReport: undefined,
@@ -10,4 +11,6 @@ export const AppContext = createContext<TAppContext>({
     setRivers: undefined,
     lake: undefined,
     setLake: undefined,
+    page: undefined,
+    setPage: undefined,
 });

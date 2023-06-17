@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { TGeneralReport, ZGeneralReport } from './TGeneralReport';
 import { TLake, ZLake } from './TLake';
+import TPage from './TPage';
 import { TRiver, ZRiver } from './TRiver';
 
 export type TAppContext = {
@@ -12,4 +13,6 @@ export type TAppContext = {
     setRivers?: React.Dispatch<React.SetStateAction<TRiver[]>> | undefined;
     lake?: TLake | null;
     setLake?: React.Dispatch<React.SetStateAction<TLake | undefined>> | undefined;
+    page?: TPage;
+    setPage?: React.Dispatch<React.SetStateAction<TPage>>;
 };

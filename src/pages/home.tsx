@@ -6,10 +6,7 @@ const Home: FunctionComponent = () => {
     const { generalReport, rivers } = useContext(AppContext);
 
     return (
-        <Container>
-            <Typography variant="h2" align="center" color="textPrimary">
-                Welcome to Current Conditions
-            </Typography>
+        <Container maxWidth="xl">
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Card>
@@ -29,17 +26,49 @@ const Home: FunctionComponent = () => {
                     <Card>
                         <CardHeader title="Rivers" />
                         <CardContent>
-                            {rivers &&
+                            <Grid
+                                container
+                                sx={{
+                                    p: 2,
+                                    minWidth: 300,
+                                    fontWeight: 'bold',
+                                    textDecoration: 'underline',
+                                }}
+                            >
+                                <Grid item sm={2}>
+                                    Name @ Location
+                                </Grid>
+                                <Grid item sm={1}>
+                                    CFS
+                                </Grid>
+                                <Grid item sm={7}>
+                                    Report
+                                </Grid>
+                                <Grid item sm={2}>
+                                    Hatches
+                                </Grid>
+                            </Grid>
+                            {rivers ? (
                                 rivers.map((river) => {
                                     return (
-                                        <Grid container key={river._id}>
+                                        <Grid
+                                            container
+                                            key={river._id}
+                                            sx={{
+                                                bgcolor: 'background.paper',
+                                                boxShadow: 1,
+                                                borderRadius: 2,
+                                                p: 2,
+                                                minWidth: 300,
+                                            }}
+                                        >
                                             <Grid item xs={2}>
                                                 {river.name}
                                             </Grid>
-                                            <Grid item xs={2}>
+                                            <Grid item xs={1}>
                                                 {river.cfs}
                                             </Grid>
-                                            <Grid item xs={6}>
+                                            <Grid item xs={7}>
                                                 {river.report}
                                             </Grid>
                                             <Grid item xs={2}>
@@ -47,7 +76,10 @@ const Home: FunctionComponent = () => {
                                             </Grid>
                                         </Grid>
                                     );
-                                })}
+                                })
+                            ) : (
+                                <p>No river available</p>
+                            )}
                         </CardContent>
                     </Card>
                 </Grid>
