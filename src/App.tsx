@@ -35,8 +35,12 @@ const App: FC<{}> = (props) => {
     };
 
     const getRivers = async (): Promise<void> => {
-        const { data } = await axios.get('http://localhost:5050/rivers');
-        addCFS(data);
+        try {
+            const { data } = await axios.get('http://localhost:5050/rivers');
+            addCFS(data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const fetchUSGSData = async (riversP: TRiver[]) => {

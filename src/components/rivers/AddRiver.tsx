@@ -1,9 +1,11 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import axios from 'axios';
-import { TRiver } from '../../types/TRiver';
+import { TRiver, ZRiver } from '../../types/TRiver';
 import { Button, TextField, Card, CardHeader, CardContent, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import dateformat from 'dateformat';
+import { AppContext } from '../../contexts/ConditionsContext';
+import { ZodError } from 'zod';
 
 const AddRiver: FunctionComponent = () => {
     /*
@@ -20,6 +22,11 @@ const AddRiver: FunctionComponent = () => {
     });
 
     /*
+     * Contexts
+     */
+    const { getRivers } = useContext(AppContext);
+
+    /*
      * Methods
      */
     const handleInputChange = async (event: any) => {
@@ -29,13 +36,20 @@ const AddRiver: FunctionComponent = () => {
         });
     };
 
-    const submitRiver = (event: any) => {
-        event.preventDefault();
-        console.log('New River Submission: ', newRiver);
-        axios.post('http://localhost:5050/rivers', newRiver).then((res) => {
-            // error handling
-        });
-        event.target.reset();
+    const submitRiver = async (event: any) => {
+        try {
+            event.preventDefault();
+            ZRiver.parse(newRiver);
+            await axios.post('http://localhost:5050/rivers', newRiver);
+            getRivers && getRivers();
+            event.target.reset();
+        } catch (error) {
+            if (error instanceof ZodError) {
+                console.error('Zod Error', error.issues);
+            } else {
+                console.error('Submit River Error', error);
+            }
+        }
     };
 
     /*
@@ -58,6 +72,7 @@ const AddRiver: FunctionComponent = () => {
                     <TextField
                         id="station-id-input"
                         label="Station ID"
+                        type="number"
                         required
                         fullWidth
                         name="stationId"
