@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const ZRiver = z.object({
     _id: z.number().optional(),
     name: z.string().nullable(),
-    stationId: z.string().nullable(),
+    stationId: z.string().min(8).max(9).nullable(),
     report: z.string().nullable(),
     cfs: z.string().optional().nullable(),
     hatches: z.string().optional().nullable(),
