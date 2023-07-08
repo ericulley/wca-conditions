@@ -18,6 +18,7 @@ import { config } from './config/config';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './styles';
 import TPage from './types/TPage';
+import Landing from './pages/Landing';
 
 const App: FC<{}> = (props) => {
     // States
@@ -96,7 +97,8 @@ const App: FC<{}> = (props) => {
                     {/* Components */}
                     <NavBar />
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Landing />} />
+                        <Route path="/reports" element={<Home />} />
                         <Route path="/rivers" element={<Rivers />} />
                         <Route path="/lakes" element={<Lakes />} />
                         <Route path="/settings" element={<Settings />} />

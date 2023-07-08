@@ -1,5 +1,6 @@
 // Dependencies
 import { FunctionComponent, useContext } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios, { AxiosResponse } from 'axios';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 // Interfaces
@@ -77,4 +78,4 @@ const Rivers: FunctionComponent = () => {
     );
 };
 
-export default Rivers;
+export default withAuthenticationRequired(Rivers);

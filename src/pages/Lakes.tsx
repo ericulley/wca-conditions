@@ -1,5 +1,6 @@
 // Dependencies
 import { FunctionComponent, useEffect, useState } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios, { AxiosResponse } from 'axios';
 // Interfaces
 import { TLake } from '../types/TLake';
@@ -38,4 +39,4 @@ const Lakes: FunctionComponent = () => {
     );
 };
 
-export default Lakes;
+export default withAuthenticationRequired(Lakes);

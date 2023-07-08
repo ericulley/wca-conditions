@@ -1,5 +1,6 @@
 // Dependencies
 import { FunctionComponent as FC, useContext } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 // import axios from 'axios'
 // Components
 import AddReport from '../components/reports/AddReport';
@@ -44,4 +45,4 @@ const Settings: FC = () => {
     );
 };
 
-export default Settings;
+export default withAuthenticationRequired(Settings);

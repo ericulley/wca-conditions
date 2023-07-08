@@ -27,7 +27,7 @@ const NavBar: FunctionComponent = () => {
                         style={{ width: '33%' }}
                     >
                         {/* Home Link  */}
-                        <NavLink to={'/'}>
+                        <NavLink to={'/reports'}>
                             <Button
                                 color="secondary"
                                 onClick={() => {

@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 import { AppContext } from '../contexts/ConditionsContext';
 
@@ -94,4 +95,4 @@ const Home: FunctionComponent = () => {
     );
 };
 
-export default Home;
+export default withAuthenticationRequired(Home);
