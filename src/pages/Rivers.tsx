@@ -7,6 +7,7 @@ import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui
 import { TRiver } from '../types/TRiver';
 import { AppContext } from '../contexts/ConditionsContext';
 import { time } from 'console';
+import Footer from '../components/navigation/Footer';
 // Components
 
 const Rivers: FunctionComponent = () => {
@@ -74,6 +75,7 @@ const Rivers: FunctionComponent = () => {
                     )}
                 </CardContent>
             </Card>
+            <Footer />
         </Container>
     );
 };

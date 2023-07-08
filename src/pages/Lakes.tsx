@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 // Interfaces
 import { TLake } from '../types/TLake';
 import { Card, CardContent, CardHeader, Container, ImageList, ImageListItem } from '@mui/material';
+import Footer from '../components/navigation/Footer';
 // Components
 
 const Lakes: FunctionComponent = () => {
@@ -35,6 +36,7 @@ const Lakes: FunctionComponent = () => {
                     <p>More Coming Soon...</p>
                 </CardContent>
             </Card>
+            <Footer />
         </Container>
     );
 };
