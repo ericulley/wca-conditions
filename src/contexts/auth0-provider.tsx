@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppState, Auth0Provider } from '@auth0/auth0-react';
+import config from '../config/config';
 
 interface Auth0ProviderWithConfigProps {
     children: React.ReactNode;
@@ -9,30 +10,26 @@ interface Auth0ProviderWithConfigProps {
 export const Auth0ProviderWithHistory = ({
     children,
 }: PropsWithChildren<Auth0ProviderWithConfigProps>): JSX.Element | null => {
-    const domain = import.meta.env.VITE_AUTH0_DOMAIN;
-    const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-    const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
-    const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
+    const { auth } = config;
 
     let navigate = useNavigate();
-
     const onRedirectCallback = (appState?: AppState) => {
         navigate(appState?.returnTo || window.location.pathname);
     };
 
-    if (!(domain && clientId)) {
+    if (!(auth.domain && auth.clientId)) {
         return null;
     }
 
     return (
         <Auth0Provider
-            domain={domain}
-            clientId={clientId}
-            audience={audience}
-            redirectUri={redirectUri + '/reports'}
+            domain={auth.domain}
+            clientId={auth.clientId}
+            audience={auth.audience}
+            redirectUri={auth.redirectUri + '/reports'}
             onRedirectCallback={onRedirectCallback}
             useRefreshTokens={true}
-            cacheLocation={'localstorage'}
+            cacheLocation={auth.cacheLocation}
         >
             {children}
         </Auth0Provider>

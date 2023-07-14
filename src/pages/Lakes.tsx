@@ -7,7 +7,7 @@ import { TLake } from '../types/TLake';
 import { Card, CardContent, CardHeader, Container, ImageList, ImageListItem } from '@mui/material';
 import Footer from '../components/navigation/Footer';
 import TPage from '../types/TPage';
-import { AppContext } from '../contexts/app-context';
+import AppContext from '../contexts/app-context';
 // Components
 
 const Lakes: FunctionComponent = () => {
@@ -17,10 +17,6 @@ const Lakes: FunctionComponent = () => {
     const { setPage } = useContext(AppContext);
 
     const [lakes, setLakes] = useState<TLake[]>([]);
-
-    const fetchAllLakes = () => {
-        axios.get('http://localhost:3001/lakes').then(async (res) => {});
-    };
 
     useEffect(() => {
         setPage(TPage.Lakes);

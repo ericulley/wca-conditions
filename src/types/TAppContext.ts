@@ -1,8 +1,7 @@
-import { z } from 'zod';
-import { TGeneralReport, ZGeneralReport } from './TGeneralReport';
-import { TLake, ZLake } from './TLake';
+import { TGeneralReport } from './TGeneralReport';
+import { TRiver } from './TRiver';
+import { TLake } from './TLake';
 import TPage from './TPage';
-import { TRiver, ZRiver } from './TRiver';
 
 export type TAppContext = {
     generalReport?: TGeneralReport;

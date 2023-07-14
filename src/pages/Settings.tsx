@@ -1,14 +1,14 @@
 // Dependencies
 import { FunctionComponent as FC, useContext, useEffect } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-// import axios from 'axios'
-// Components
+import { Container, Typography, Grid } from '@mui/material';
+// Components & Context
 import AddReport from '../components/reports/AddReport';
 import EditReport from '../components/reports/EditReport';
 import AddRiver from '../components/rivers/AddRiver';
 import EditRiver from '../components/rivers/EditRiver';
-import { Container, Typography, Grid } from '@mui/material';
-import { AppContext } from '../contexts/app-context';
+import AppContext from '../contexts/app-context';
+// Types & Interfaces
 import TPage from '../types/TPage';
 
 const Settings: FC = () => {

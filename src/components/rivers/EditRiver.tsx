@@ -2,23 +2,17 @@
 import { FunctionComponent, useEffect, useContext } from 'react';
 import { Box, Card, CardHeader, Typography, CardContent } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-
-// Interfaces
-import { TRiver } from '../../types/TRiver';
-
 // Components
 import EditRiverForm from './EditRiverForm';
-import { AppContext } from '../../contexts/app-context';
+import AppContext from '../../contexts/app-context';
+// Types & Interfaces
+import { TRiver } from '../../types/TRiver';
 
 const EditRiver: FunctionComponent = () => {
     /*
      * Contexts
      */
     const { rivers, getRivers, setRivers } = useContext(AppContext);
-
-    // useEffect(() => {
-    //     getRivers();
-    // }, []);
 
     return (
         <Card>

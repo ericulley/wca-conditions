@@ -1,11 +1,14 @@
+// Dependencies
 import { FunctionComponent, useContext, useState } from 'react';
 import axios from 'axios';
-import { TRiver, ZRiver } from '../../types/TRiver';
+import { ZodError } from 'zod';
+import dateformat from 'dateformat';
 import { Button, TextField, Card, CardHeader, CardContent, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import dateformat from 'dateformat';
-import { AppContext } from '../../contexts/app-context';
-import { ZodError } from 'zod';
+// Components & Context
+import AppContext from '../../contexts/app-context';
+// Types & Interfaces
+import { TRiver, ZRiver } from '../../types/TRiver';
 
 const AddRiver: FunctionComponent = () => {
     /*

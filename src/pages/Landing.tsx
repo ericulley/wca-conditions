@@ -1,7 +1,10 @@
-import { Container, Grid, ImageListItem, Typography } from '@mui/material';
+// Dependencies
 import { useContext, useEffect } from 'react';
+import { Container, Grid, ImageListItem, Typography } from '@mui/material';
+// Components & Contexts
 import Footer from '../components/navigation/Footer';
-import { AppContext } from '../contexts/app-context';
+import AppContext from '../contexts/app-context';
+// Types & Interfaces
 import TPage from '../types/TPage';
 
 const Landing = () => {

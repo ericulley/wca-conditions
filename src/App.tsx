@@ -5,20 +5,20 @@ import { Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 // Components
 import NavBar from './components/navigation/NavBar';
+import Landing from './pages/Landing';
+import Home from './pages/Home';
 import Rivers from './pages/Rivers';
 import Lakes from './pages/Lakes';
-import Home from './pages/Home';
 import Settings from './pages/Settings';
-import { AppContext } from './contexts/app-context';
+import AppContext from './contexts/app-context';
+// Config & Styles
+import { ThemeProvider } from '@mui/material';
+import { theme } from './styles';
+// Types & Interface
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
 import { TLake } from './types/TLake';
-// Config & Styles
-import { config } from './config/config';
-import { ThemeProvider } from '@mui/material';
-import { theme } from './styles';
 import TPage from './types/TPage';
-import Landing from './pages/Landing';
 
 const App: FC<{}> = (props) => {
     // States
@@ -88,12 +88,10 @@ const App: FC<{}> = (props) => {
 
     useEffect(() => {
         getGeneralReport();
-        getRivers();
     }, []);
 
     useEffect(() => {
-        console.log('Page: ', page);
-        getRivers();
+        if (isAuthenticated) getRivers();
     }, [page]);
 
     return (

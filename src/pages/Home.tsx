@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext, useEffect } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
-import { AppContext } from '../contexts/app-context';
+import AppContext from '../contexts/app-context';
 import Footer from '../components/navigation/Footer';
 import TPage from '../types/TPage';
 

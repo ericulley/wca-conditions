@@ -1,8 +1,7 @@
 import { createContext } from 'react';
 import { TAppContext } from '../types/TAppContext';
-import TPage from '../types/TPage';
 
-export const AppContext = createContext<TAppContext>({
+const AppContext = createContext<TAppContext>({
     generalReport: undefined,
     getGeneralReport: undefined,
     setGeneralReport: async () => {},
@@ -14,3 +13,5 @@ export const AppContext = createContext<TAppContext>({
     page: undefined,
     setPage: async () => {},
 });
+
+export default AppContext;

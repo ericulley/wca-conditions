@@ -11,15 +11,12 @@ import {
     Input,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// Interfaces
+// Components & Contexts
+import AppContext from '../../contexts/app-context';
+// Types& Interfaces
 import { TRiver } from '../../types/TRiver';
-import { AppContext } from '../../contexts/app-context';
 
-interface Props {
-    riverToEdit: TRiver;
-}
-
-const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit }) => {
+const EditRiverForm: FunctionComponent<{ riverToEdit: TRiver }> = ({ riverToEdit }) => {
     const { rivers, getRivers, setRivers } = useContext(AppContext);
 
     // States
