@@ -1,5 +1,5 @@
 // Dependencies
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import axios from 'axios';
 import {
     Button,
@@ -13,13 +13,15 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Interfaces
 import { TRiver } from '../../types/TRiver';
+import { AppContext } from '../../contexts/app-context';
 
 interface Props {
     riverToEdit: TRiver;
-    fetchAllRivers: () => void;
 }
 
-const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }) => {
+const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit }) => {
+    const { rivers, getRivers, setRivers } = useContext(AppContext);
+
     // States
     const [editRiver, setEditRiver] = useState<TRiver>(riverToEdit);
 
@@ -31,16 +33,26 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
         });
     };
 
-    const updateRiver = async (event: any) => {
+    const updateRiverInPlace = async (event: any) => {
+        axios
+            .put('http://localhost:5050/rivers/' + riverToEdit._id!.toString(), editRiver)
+            .then((res) => {
+                getRivers();
+            });
+    };
+
+    const updateRiverAndArchive = async (event: any) => {
         event.preventDefault();
-        axios.put('http://localhost:5050/rivers/' + event.target.id, editRiver).then((res) => {
-            fetchAllRivers();
-        });
+        axios
+            .put('http://localhost:5050/rivers/' + riverToEdit._id!.toString(), editRiver)
+            .then((res) => {
+                getRivers();
+            });
     };
 
     const deleteRiver = (event: any) => {
         axios.delete('http://localhost:5050/rivers/' + event.target.id).then(() => {
-            fetchAllRivers();
+            getRivers();
         });
     };
 
@@ -50,7 +62,7 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                 {riverToEdit.name}
             </AccordionSummary>
             <AccordionDetails>
-                <form className="" id={riverToEdit._id!.toString()} onSubmit={updateRiver}>
+                <form className="" id={riverToEdit._id!.toString()}>
                     <Box display="flex" flexDirection="column">
                         <TextField
                             id="edit-river-name"
@@ -84,7 +96,20 @@ const EditRiverForm: FunctionComponent<Props> = ({ riverToEdit, fetchAllRivers }
                             defaultValue={riverToEdit.date}
                             onChange={handleChange}
                         />
-                        <Button className="" variant="contained" type="submit" fullWidth>
+                        <Button
+                            className=""
+                            variant="contained"
+                            fullWidth
+                            onClick={updateRiverAndArchive}
+                        >
+                            Archive & Update
+                        </Button>
+                        <Button
+                            className=""
+                            variant="contained"
+                            fullWidth
+                            onClick={updateRiverInPlace}
+                        >
                             Update River
                         </Button>
                         <Button

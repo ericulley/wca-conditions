@@ -1,7 +1,7 @@
-import { createTheme } from '@mui/material';
+import { createTheme, ThemeOptions } from '@mui/material';
 import { blueGrey, grey } from '@mui/material/colors';
 
-export const defaultStyles = {
+export const defaultStyles: ThemeOptions = {
     palette: {
         primary: blueGrey,
         secondary: grey,
@@ -15,6 +15,11 @@ export const defaultStyles = {
         MuiInput: {
             defaultProps: {
                 sx: { marginTop: 1 },
+            },
+        },
+        MuiLink: {
+            defaultProps: {
+                sx: { textDecoration: 'none' },
             },
         },
         MuiTextField: {
@@ -32,11 +37,6 @@ export const defaultStyles = {
                 title: {
                     fontSize: '1.2em',
                 },
-            },
-        },
-        MuiGridContainer: {
-            defaultProps: {
-                sx: { borderRadius: 2, p: 2, minWidth: 300 },
             },
         },
     },

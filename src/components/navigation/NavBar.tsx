@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AppBar, Toolbar, Box, Button } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AppContext } from '../../contexts/ConditionsContext';
+import { AppContext } from '../../contexts/app-context';
 import TPage from '../../types/TPage';
 
 const NavBar: FunctionComponent = () => {

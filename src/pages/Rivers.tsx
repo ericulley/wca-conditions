@@ -1,17 +1,25 @@
 // Dependencies
-import { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext, useEffect } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios, { AxiosResponse } from 'axios';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
 // Interfaces
 import { TRiver } from '../types/TRiver';
-import { AppContext } from '../contexts/ConditionsContext';
+import { AppContext } from '../contexts/app-context';
 import { time } from 'console';
 import Footer from '../components/navigation/Footer';
+import TPage from '../types/TPage';
 // Components
 
 const Rivers: FunctionComponent = () => {
-    const { rivers, setRivers } = useContext(AppContext);
+    /*
+     * Contexts
+     */
+    const { setPage, rivers, setRivers } = useContext(AppContext);
+
+    useEffect(() => {
+        setPage(TPage.Rivers);
+    }, []);
 
     return (
         <Container id="rivers-container" maxWidth="xl">

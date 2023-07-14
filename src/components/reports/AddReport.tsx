@@ -12,7 +12,7 @@ import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/ma
 import AddIcon from '@mui/icons-material/Add';
 import { TGeneralReport } from '../../types/TGeneralReport';
 import dateformat from 'dateformat';
-import { AppContext } from '../../contexts/ConditionsContext';
+import { AppContext } from '../../contexts/app-context';
 
 const AddReport: FC = () => {
     const { getGeneralReport } = useContext(AppContext);

@@ -4,7 +4,7 @@ import { TRiver, ZRiver } from '../../types/TRiver';
 import { Button, TextField, Card, CardHeader, CardContent, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import dateformat from 'dateformat';
-import { AppContext } from '../../contexts/ConditionsContext';
+import { AppContext } from '../../contexts/app-context';
 import { ZodError } from 'zod';
 
 const AddRiver: FunctionComponent = () => {
@@ -13,7 +13,7 @@ const AddRiver: FunctionComponent = () => {
      */
     const [newRiver, setNewRiver] = useState<TRiver>({
         name: null,
-        date: dateformat(new Date(), 'isoDate'),
+        date: dateformat(new Date(), 'isoDate') as unknown as Date,
         stationId: null,
         hatches: null,
         report: null,
@@ -30,18 +30,21 @@ const AddRiver: FunctionComponent = () => {
      * Methods
      */
     const handleInputChange = async (event: any) => {
+        let { name, type, value } = event.target;
         setNewRiver({
             ...newRiver,
-            [event.target.name]: event.target.value,
+            [name]: type === 'number' ? parseInt(value, 10) : value,
         });
     };
 
     const submitRiver = async (event: any) => {
         try {
             event.preventDefault();
+            console.log(newRiver);
             ZRiver.parse(newRiver);
             await axios.post('http://localhost:5050/rivers', newRiver);
             getRivers && getRivers();
+            await getRivers();
             event.target.reset();
         } catch (error) {
             if (error instanceof ZodError) {

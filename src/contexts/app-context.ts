@@ -5,12 +5,12 @@ import TPage from '../types/TPage';
 export const AppContext = createContext<TAppContext>({
     generalReport: undefined,
     getGeneralReport: undefined,
-    setGeneralReport: undefined,
+    setGeneralReport: async () => {},
     rivers: undefined,
-    getRivers: undefined,
+    getRivers: async () => {},
     setRivers: undefined,
     lake: undefined,
     setLake: undefined,
     page: undefined,
-    setPage: undefined,
+    setPage: async () => {},
 });

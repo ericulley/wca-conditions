@@ -26,12 +26,12 @@ const Footer = () => {
                     alignItems: 'center',
                 }}
             >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Link
+                    href="https://ericulley.github.io/portfolio"
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
                     <CopyrightIcon sx={{ height: '20px' }} />
                     <Typography variant="body2">Ephemera Digital</Typography>
-                </Box>
-                <Link href="https://ericulley.github.io/portfolio" variant="body2">
-                    ericulley.github.io/portfolio
                 </Link>
             </Box>
         </Paper>

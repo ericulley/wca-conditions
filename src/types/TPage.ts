@@ -1,4 +1,5 @@
 enum TPage {
+    Landing,
     Home,
     Rivers,
     Lakes,

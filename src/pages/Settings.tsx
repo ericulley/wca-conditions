@@ -1,5 +1,5 @@
 // Dependencies
-import { FunctionComponent as FC, useContext } from 'react';
+import { FunctionComponent as FC, useContext, useEffect } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 // import axios from 'axios'
 // Components
@@ -8,9 +8,19 @@ import EditReport from '../components/reports/EditReport';
 import AddRiver from '../components/rivers/AddRiver';
 import EditRiver from '../components/rivers/EditRiver';
 import { Container, Typography, Grid } from '@mui/material';
-import { AppContext } from '../contexts/ConditionsContext';
+import { AppContext } from '../contexts/app-context';
+import TPage from '../types/TPage';
 
 const Settings: FC = () => {
+    /*
+     * Contexts
+     */
+    const { setPage } = useContext(AppContext);
+
+    useEffect(() => {
+        setPage(TPage.Settings);
+    }, []);
+
     return (
         <Container>
             <Typography variant="h2">Settings</Typography>

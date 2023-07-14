@@ -1,11 +1,19 @@
-import { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext, useEffect } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Container, Typography, Grid, Card, CardHeader, CardContent } from '@mui/material';
-import { AppContext } from '../contexts/ConditionsContext';
+import { AppContext } from '../contexts/app-context';
 import Footer from '../components/navigation/Footer';
+import TPage from '../types/TPage';
 
 const Home: FunctionComponent = () => {
-    const { generalReport, rivers } = useContext(AppContext);
+    /*
+     * Contexts
+     */
+    const { setPage, generalReport, rivers } = useContext(AppContext);
+
+    useEffect(() => {
+        setPage(TPage.Home);
+    }, []);
 
     return (
         <Container maxWidth="xl">

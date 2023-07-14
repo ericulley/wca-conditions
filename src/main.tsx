@@ -5,11 +5,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0ProviderWithHistory } from './contexts/auth0-provider';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <Router>
-            <Auth0ProviderWithHistory>
-                <App />
-            </Auth0ProviderWithHistory>
-        </Router>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <Router>
+        <Auth0ProviderWithHistory>
+            <App />
+        </Auth0ProviderWithHistory>
+    </Router>
+    // </React.StrictMode>
 );
