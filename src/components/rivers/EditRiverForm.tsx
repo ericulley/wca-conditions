@@ -20,6 +20,7 @@ const EditRiverForm: FunctionComponent<{ riverToEdit: TRiver }> = ({ riverToEdit
     const { rivers, getRivers, setRivers } = useContext(AppContext);
 
     // States
+    const [archiveCopy, setArchiveCopy] = useState<TRiver>(riverToEdit);
     const [editRiver, setEditRiver] = useState<TRiver>(riverToEdit);
 
     // Methods
@@ -30,21 +31,20 @@ const EditRiverForm: FunctionComponent<{ riverToEdit: TRiver }> = ({ riverToEdit
         });
     };
 
-    const updateRiverInPlace = async (event: any) => {
+    const updateRiverInPlace = async () => {
         axios
             .put('http://localhost:5050/rivers/' + riverToEdit._id!.toString(), editRiver)
             .then((res) => {
                 getRivers();
+                setArchiveCopy(editRiver);
             });
     };
 
-    const updateRiverAndArchive = async (event: any) => {
-        event.preventDefault();
-        axios
-            .put('http://localhost:5050/rivers/' + riverToEdit._id!.toString(), editRiver)
-            .then((res) => {
-                getRivers();
-            });
+    const updateRiverAndArchive = async () => {
+        axios.post('http://localhost:5050/archive', archiveCopy).then((res) => {
+            console.log('Response: ', res);
+            updateRiverInPlace();
+        });
     };
 
     const deleteRiver = (event: any) => {

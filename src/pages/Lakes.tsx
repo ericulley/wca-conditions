@@ -4,7 +4,15 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios, { AxiosResponse } from 'axios';
 // Interfaces
 import { TLake } from '../types/TLake';
-import { Card, CardContent, CardHeader, Container, ImageList, ImageListItem } from '@mui/material';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    Container,
+    Grid,
+    ImageList,
+    ImageListItem,
+} from '@mui/material';
 import Footer from '../components/navigation/Footer';
 import TPage from '../types/TPage';
 import AppContext from '../contexts/app-context';
@@ -27,15 +35,15 @@ const Lakes: FunctionComponent = () => {
             <Card>
                 <CardHeader title="Lakes" />
                 <CardContent>
-                    <ImageList sx={{ width: 617, height: 463 }} cols={1}>
-                        <ImageListItem>
+                    <Grid container>
+                        <Grid item sm={12} color="primary">
                             <img
                                 src={`https://www.usbr.gov/pn/hydromet/bur.png`}
                                 alt="Major Storage Reservoirs in the Upper Snake River Basin"
                                 loading="lazy"
                             />
-                        </ImageListItem>
-                    </ImageList>
+                        </Grid>
+                    </Grid>
                     <p>More Coming Soon...</p>
                 </CardContent>
             </Card>

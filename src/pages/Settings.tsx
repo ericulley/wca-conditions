@@ -22,7 +22,7 @@ const Settings: FC = () => {
     }, []);
 
     return (
-        <Container>
+        <Container maxWidth="xl">
             <Typography variant="h2">Settings</Typography>
             <Typography className="" variant="h5">
                 Fishing Report

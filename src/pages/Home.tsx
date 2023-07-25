@@ -64,6 +64,7 @@ const Home: FunctionComponent = () => {
                                         <Grid
                                             container
                                             key={river._id}
+                                            spacing={0}
                                             sx={{
                                                 bgcolor: 'background.paper',
                                                 boxShadow: 1,

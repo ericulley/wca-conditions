@@ -29,7 +29,10 @@ export const defaultStyles: ThemeOptions = {
         },
         MuiCardContent: {
             defaultProps: {
-                sx: { marginTop: 0, paddingTop: 0 },
+                sx: {
+                    marginTop: 0,
+                    paddingTop: 0,
+                },
             },
         },
         MuiCardHeader: {
@@ -37,6 +40,12 @@ export const defaultStyles: ThemeOptions = {
                 title: {
                     fontSize: '1.2em',
                 },
+            },
+        },
+        MuiGrid: {
+            defaultProps: {
+                spacing: 2,
+                sx: {},
             },
         },
     },
