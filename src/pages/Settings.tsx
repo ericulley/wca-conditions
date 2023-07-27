@@ -1,7 +1,8 @@
 // Dependencies
 import { FunctionComponent as FC, useContext, useEffect } from 'react';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0, User, withAuthenticationRequired } from '@auth0/auth0-react';
 import { Container, Typography, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 // Components & Context
 import AddReport from '../components/reports/AddReport';
 import EditReport from '../components/reports/EditReport';

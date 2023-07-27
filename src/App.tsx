@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Rivers from './pages/Rivers';
 import Lakes from './pages/Lakes';
 import Settings from './pages/Settings';
+import Error from './pages/Error';
 import AppContext from './contexts/app-context';
 // Config & Styles
 import { ThemeProvider } from '@mui/material';
@@ -116,7 +117,16 @@ const App: FC<{}> = (props) => {
                         <Route path="/reports" element={<Home />} />
                         <Route path="/rivers" element={<Rivers />} />
                         <Route path="/lakes" element={<Lakes />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route
+                            path="/settings"
+                            element={
+                                user?.['http://current-conditions.com/roles']?.includes('Admin') ? (
+                                    <Settings />
+                                ) : (
+                                    <Error />
+                                )
+                            }
+                        />
                     </Routes>
                 </div>
             </AppContext.Provider>
