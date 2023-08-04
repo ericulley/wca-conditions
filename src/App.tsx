@@ -23,6 +23,7 @@ import { TLake } from './types/TLake';
 import TPage from './types/TPage';
 
 const App: FC<{}> = (props) => {
+    console.log('API URL: ', config.api.url);
     // States
     const [generalReport, setGeneralReport] = useState<TGeneralReport>();
     const [rivers, setRivers] = useState<TRiver[]>([]);
