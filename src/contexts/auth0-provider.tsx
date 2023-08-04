@@ -14,6 +14,7 @@ export const Auth0ProviderWithHistory = ({
 
     let navigate = useNavigate();
     const onRedirectCallback = (appState?: AppState) => {
+        console.log('onRedirectCallback, appState: ', appState?.returnTo);
         navigate(appState?.returnTo || window.location.pathname);
     };
 
@@ -26,7 +27,7 @@ export const Auth0ProviderWithHistory = ({
             domain={auth.domain}
             clientId={auth.clientId}
             audience={auth.audience}
-            redirectUri={auth.redirectUri + '/reports'}
+            redirectUri={auth.redirectUri}
             onRedirectCallback={onRedirectCallback}
             useRefreshTokens={true}
             cacheLocation={auth.cacheLocation}

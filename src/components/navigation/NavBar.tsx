@@ -92,7 +92,7 @@ const NavBar: FunctionComponent = () => {
                                     variant="outlined"
                                     color="secondary"
                                     onClick={() => {
-                                        loginWithRedirect();
+                                        loginWithRedirect({ appState: { returnTo: '/reports' } });
                                     }}
                                 >
                                     Log In
