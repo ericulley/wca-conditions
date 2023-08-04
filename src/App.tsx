@@ -13,6 +13,7 @@ import Settings from './pages/Settings';
 import Error from './pages/Error';
 import AppContext from './contexts/app-context';
 // Config & Styles
+import config from './config/config';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './styles';
 // Types & Interface
@@ -33,7 +34,7 @@ const App: FC<{}> = (props) => {
     // App Functions
     const getGeneralReport = async (): Promise<void> => {
         try {
-            const { data } = await axios.get(`http://localhost:5050/general/reports/latest`);
+            const { data } = await axios.get(`${config.api.url}/general/reports/latest`);
             setGeneralReport(data);
         } catch (error) {
             console.error(error);
@@ -42,7 +43,7 @@ const App: FC<{}> = (props) => {
 
     const getRivers = async (): Promise<void> => {
         try {
-            const { data } = await axios.get('http://localhost:5050/rivers');
+            const { data } = await axios.get(`${config.api.url}/rivers`);
             console.log('Get Rivers Data: ', data);
             addCFS(data);
         } catch (error) {
