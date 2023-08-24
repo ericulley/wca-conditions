@@ -19,12 +19,7 @@ import AppContext from '../contexts/app-context';
 // Components
 
 const Lakes: FunctionComponent = () => {
-    /*
-     * Contexts
-     */
     const { setPage } = useContext(AppContext);
-
-    const [lakes, setLakes] = useState<TLake[]>([]);
 
     useEffect(() => {
         setPage(TPage.Lakes);

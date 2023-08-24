@@ -13,9 +13,6 @@ import AppContext from '../contexts/app-context';
 import TPage from '../types/TPage';
 
 const Settings: FC = () => {
-    /*
-     * Contexts
-     */
     const { setPage } = useContext(AppContext);
 
     useEffect(() => {

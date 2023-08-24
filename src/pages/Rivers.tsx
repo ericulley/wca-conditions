@@ -9,9 +9,6 @@ import AppContext from '../contexts/app-context';
 import TPage from '../types/TPage';
 
 const Rivers: FunctionComponent = () => {
-    /*
-     * Contexts
-     */
     const { setPage, rivers, setRivers } = useContext(AppContext);
 
     useEffect(() => {

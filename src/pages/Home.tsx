@@ -6,9 +6,6 @@ import Footer from '../components/navigation/Footer';
 import TPage from '../types/TPage';
 
 const Home: FunctionComponent = () => {
-    /*
-     * Contexts
-     */
     const { setPage, generalReport, rivers } = useContext(AppContext);
 
     useEffect(() => {

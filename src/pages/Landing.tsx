@@ -8,9 +8,6 @@ import AppContext from '../contexts/app-context';
 import TPage from '../types/TPage';
 
 const Landing = () => {
-    /*
-     * Contexts
-     */
     const { setPage } = useContext(AppContext);
 
     useEffect(() => {
