@@ -28,6 +28,7 @@ const Footer = () => {
             >
                 <Link
                     href="https://ericulley.github.io/portfolio"
+                    target="_blank"
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <CopyrightIcon sx={{ height: '20px' }} />
