@@ -29,18 +29,21 @@ const Lakes: FunctionComponent = () => {
         <Container id="lakes-container" maxWidth="xl">
             <Card>
                 <CardHeader title="Lakes" />
-                <CardContent>
-                    <Grid container>
-                        <Grid item sm={12} color="primary">
-                            <img
-                                src={`https://www.usbr.gov/pn/hydromet/bur.png`}
-                                alt="Major Storage Reservoirs in the Upper Snake River Basin"
-                                loading="lazy"
-                            />
-                        </Grid>
-                    </Grid>
-                    <p>More Coming Soon...</p>
-                </CardContent>
+                <ImageList cols={1} rowHeight={'auto'}>
+                    <ImageListItem sx={{ width: '50%', margin: '0 auto' }}>
+                        <img
+                            src={`https://www.usbr.gov/pn/hydromet/bur.png`}
+                            alt="Major Storage Reservoirs in the Upper Snake River Basin"
+                            loading="lazy"
+                        />
+                    </ImageListItem>
+                </ImageList>
+                {/* <CardContent> */}
+                {/* <Grid container> */}
+                {/* <Grid item sm={12} color="primary"> */}
+                {/* </Grid> */}
+                {/* </Grid> */}
+                {/* </CardContent> */}
             </Card>
             <Footer />
         </Container>
