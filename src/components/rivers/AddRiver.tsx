@@ -79,7 +79,6 @@ const AddRiver: FunctionComponent = () => {
                     <TextField
                         id="station-id-input"
                         label="Station ID"
-                        type="number"
                         required
                         fullWidth
                         name="stationId"

@@ -3,7 +3,6 @@ import { FunctionComponent, useContext, useEffect, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios, { AxiosResponse } from 'axios';
 // Interfaces
-import { TLake } from '../types/TLake';
 import {
     Card,
     CardContent,

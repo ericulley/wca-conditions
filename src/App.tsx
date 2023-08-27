@@ -19,18 +19,16 @@ import { theme } from './styles';
 // Types & Interface
 import { TGeneralReport } from './types/TGeneralReport';
 import { TRiver } from './types/TRiver';
-import { TLake } from './types/TLake';
 import TPage from './types/TPage';
 
 const App: FC<{}> = (props) => {
-    console.log('API URL: ', config.api.url);
     // States
     const [generalReport, setGeneralReport] = useState<TGeneralReport>();
     const [rivers, setRivers] = useState<TRiver[]>([]);
     const [page, setPage] = useState<TPage>(TPage.Landing);
 
     // Auth
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
     // App Functions
     const getGeneralReport = async (): Promise<void> => {
