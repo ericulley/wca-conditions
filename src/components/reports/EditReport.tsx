@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
 import { Card, CardHeader, CardContent, TextField, Button, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import config from '../../config/config';
 
 interface Props {
     fetchFishingReport: () => void;
@@ -22,7 +23,7 @@ const EditReport: FunctionComponent<Props> = ({ fetchFishingReport, postId }) =>
     const updateGenReport = (event: any) => {
         event.preventDefault();
         console.log(event.target.id);
-        axios.put('http://localhost:3001/reports/' + event.target.id, editReport).then((res) => {
+        axios.put(`${config.api.url}/reports/` + event.target.id, editReport).then((res) => {
             fetchFishingReport();
         });
         event.target.reset();

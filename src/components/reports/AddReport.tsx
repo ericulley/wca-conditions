@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { TGeneralReport } from '../../types/TGeneralReport';
 import dateformat from 'dateformat';
 import AppContext from '../../contexts/app-context';
+import config from '../../config/config';
 
 const AddReport: FC = () => {
     const { getGeneralReport } = useContext(AppContext);
@@ -45,7 +46,7 @@ const AddReport: FC = () => {
             console.log('Report State Pre-Post: ', report);
             const res = await axios({
                 method: 'post',
-                url: 'http://localhost:5050/general/reports',
+                url: `${config.api.url}/general/reports`,
                 data: report,
             });
             target.reset();
