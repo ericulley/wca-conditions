@@ -11,6 +11,7 @@ import {
     Input,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import config from '../../config/config';
 // Components & Contexts
 import AppContext from '../../contexts/app-context';
 // Types& Interfaces
@@ -33,7 +34,7 @@ const EditRiverForm: FunctionComponent<{ riverToEdit: TRiver }> = ({ riverToEdit
 
     const updateRiverInPlace = async () => {
         axios
-            .put('http://localhost:5050/rivers/' + riverToEdit._id!.toString(), editRiver)
+            .put(`${config.api.url}/rivers/` + riverToEdit._id!.toString(), editRiver)
             .then((res) => {
                 getRivers();
                 setArchiveCopy(editRiver);
@@ -41,14 +42,14 @@ const EditRiverForm: FunctionComponent<{ riverToEdit: TRiver }> = ({ riverToEdit
     };
 
     const updateRiverAndArchive = async () => {
-        axios.post('http://localhost:5050/archive', archiveCopy).then((res) => {
+        axios.post(`${config.api.url}/archive`, archiveCopy).then((res) => {
             console.log('Response: ', res);
             updateRiverInPlace();
         });
     };
 
     const deleteRiver = (event: any) => {
-        axios.delete('http://localhost:5050/rivers/' + event.target.id).then(() => {
+        axios.delete(`${config.api.url}/rivers/` + event.target.id).then(() => {
             getRivers();
         });
     };

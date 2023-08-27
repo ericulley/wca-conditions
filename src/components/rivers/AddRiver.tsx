@@ -5,6 +5,7 @@ import { ZodError } from 'zod';
 import dateformat from 'dateformat';
 import { Button, TextField, Card, CardHeader, CardContent, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import config from '../../config/config';
 // Components & Context
 import AppContext from '../../contexts/app-context';
 // Types & Interfaces
@@ -45,7 +46,7 @@ const AddRiver: FunctionComponent = () => {
             event.preventDefault();
             console.log(newRiver);
             ZRiver.parse(newRiver);
-            await axios.post('http://localhost:5050/rivers', newRiver);
+            await axios.post(`${config.api.url}/rivers`, newRiver);
             getRivers && getRivers();
             await getRivers();
             event.target.reset();
