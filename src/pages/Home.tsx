@@ -27,8 +27,6 @@ const Home: FunctionComponent = () => {
                                 )}
                             </div>
                         </CardContent>
-                        {/* </Card>
-                    <Card> */}
                         <CardHeader title="Rivers" />
                         <CardContent>
                             <Grid
