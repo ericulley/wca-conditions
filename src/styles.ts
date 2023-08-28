@@ -31,6 +31,7 @@ export const defaultStyles: ThemeOptions = {
             defaultProps: {
                 sx: {
                     marginTop: 0,
+                    paddingBottom: 0,
                     paddingTop: 0,
                 },
             },

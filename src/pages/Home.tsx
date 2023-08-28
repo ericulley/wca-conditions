@@ -27,10 +27,8 @@ const Home: FunctionComponent = () => {
                                 )}
                             </div>
                         </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12}>
-                    <Card>
+                        {/* </Card>
+                    <Card> */}
                         <CardHeader title="Rivers" />
                         <CardContent>
                             <Grid
@@ -61,7 +59,7 @@ const Home: FunctionComponent = () => {
                                         <Grid
                                             container
                                             key={river._id}
-                                            spacing={0}
+                                            spacing={2}
                                             sx={{
                                                 bgcolor: 'background.paper',
                                                 boxShadow: 1,
