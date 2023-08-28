@@ -27,7 +27,6 @@ const Home: FunctionComponent = () => {
                                 )}
                             </div>
                         </CardContent>
-                        <CardHeader title="Rivers" />
                         <CardContent>
                             <Grid
                                 container

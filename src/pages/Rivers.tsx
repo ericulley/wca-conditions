@@ -18,7 +18,6 @@ const Rivers: FunctionComponent = () => {
     return (
         <Container id="rivers-container" maxWidth="xl">
             <Card>
-                <CardHeader title="Rivers" />
                 <CardContent>
                     <Grid
                         container

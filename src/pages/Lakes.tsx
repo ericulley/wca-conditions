@@ -27,7 +27,6 @@ const Lakes: FunctionComponent = () => {
     return (
         <Container id="lakes-container" maxWidth="xl">
             <Card>
-                <CardHeader title="Lakes" />
                 <ImageList cols={1} rowHeight={'auto'}>
                     <ImageListItem sx={{ width: '50%', margin: '0 auto' }}>
                         <img

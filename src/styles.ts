@@ -9,7 +9,28 @@ export const defaultStyles: ThemeOptions = {
     components: {
         MuiButton: {
             defaultProps: {
-                sx: { marginTop: 1 },
+                sx: {
+                    marginTop: 1,
+                },
+            },
+        },
+        MuiToggleButton: {
+            defaultProps: {
+                sx: {
+                    color: 'secondary',
+                    marginTop: 1,
+                    border: 'none',
+                },
+            },
+            styleOverrides: {
+                root: {
+                    '&.Mui-selected': {
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                    },
+                    '&.Mui-selected:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                    },
+                },
             },
         },
         MuiInput: {
