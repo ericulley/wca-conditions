@@ -87,12 +87,6 @@ const Home: FunctionComponent = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                {/* <Grid item xs={12} md={6}>
-                    <Card>
-                        <CardHeader title="Lakes" />
-                        <CardContent></CardContent>
-                    </Card>
-                </Grid> */}
             </Grid>
             <Footer />
         </Container>
